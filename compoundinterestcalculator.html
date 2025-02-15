@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Responsive Navbar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap Icons (for chevron) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark ">
+  <div class="d-flex align-items-center navbar-brand">
+    <img src="logo.png" alt="Logo" class="mr-2" style="width:50px;height:50px;">
+    <h6 class="text-white mb-0">FinancialTools.com</h6>
+  </div>   
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>     
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item px-2">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item px-2">
+        <a class="nav-link" href="Aboutus.html">About Us</a>
+      </li>
+      <li class="nav-item px-2">
+        <a class="nav-link" href="privacypolicy.html">Privacy Policy</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    
+
+
+  <!-- //first row first column -->
+  <div  class="row">
+  <!--   //first row first column -->
+    <div class="col-sm-6" style="background-colorf:yellow;">
+      <div class="container mt-5 table1">
+
+       <h2>Compound Interest Calculator</h2>
+
+        
+       <div class="input-group m">
+           <label for="amount">Total Investment (₹)</label>
+           <div class="slider-container">
+               <input type="range" id="amount-slider" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount')">
+               <input type="number" id="amount" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount', true)">
+           </div>
+       </div>
+       <div class="input-group">
+           <label for="rate">Expected Return Rate (p.a.) (%)</label>
+           <div class="slider-container">
+               <input type="range" id="rate-slider" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate')">
+               <input type="number" id="rate" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate', true)">
+           </div>
+       </div>
+       <div class="input-group">
+           <label for="years">Time Period (Years)</label>
+           <div class="slider-container">
+               <input type="range" id="years-slider" min="1" max="30" step="1" value="10" oninput="syncInputs('years')">
+               <input type="number" id="years" min="1" max="30" step="1" value="10" oninput="syncInputs('years', true)">
+           </div>
+       </div>
+       <div class="result-box">
+           <p>Invested Amount: <strong>₹<span id="invested">0</span></strong></p>
+           <p>Est. Returns: <strong>₹<span id="returns">0</span></strong></p>
+           <p>Total Value: <strong>₹<span id="total">0</span></strong></p>
+       </div>
+       <div class="chart-container">
+           <canvas id="sipChart"></canvas>
+       </div>
+       <button onclick="calculateSIP()">Invest Now</button>
+     </div>
+  </div>
+  <!--   //first row second column -->
+    <div class="col-sm-6" style="background-colorf:orange;">
+      <div class="container mt-5 ">
+
+        <div class=".container-fluid mt-sm-5 mb-sm-5">
+        <div class="card bg-primary text-white">
+        <div class="card-body " >  <af href="sipcalculator.html">SIP Calculator</af> </div>
+      </div>
+      <br>
+      <div class="card bg-success text-white">
+        <div class="card-body">Mutual Fund Returns Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-primary text-white">
+        <div class="card-body">Income Tax Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-success text-white">
+        <div class="card-body">EPF Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-primary text-white">
+        <div class="card-body">FD Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-success text-white">
+        <div class="card-body">RD Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-primary text-white">
+        <div class="card-body">CARG Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-success text-white">
+        <div class="card-body">Coumpond Interest Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-primary text-white">
+        <div class="card-body">Retirement Calcultor</div>
+      </div>
+      <br>
+
+      <div class="card bg-success text-white">
+        <div class="card-body">PPF Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-primary text-white">
+        <div class="card-body">EMI Calculator</div>
+      </div>
+      <br>
+      <div class="card bg-success text-white">
+        <div class="card-body">Simple Interest Calculator</div>
+      </div>
+
+
+          </div>
+
+
+
+      </div>
+      </div>
+
+
+
+      </div>
+
+  <!--  /second row -->
+   <div  class="row mb-05">
+  <!--    //second row first column -->
+     <div class="col-sm-6" style="background-colorf:red;">
+
+       <div class="container">
+               <div class="section">
+                   <h1>SIP Calculator – Systematic Investment Plan Calculator</h1>
+                   <p>Prospective investors can think that SIPs and mutual funds are the same. However, SIPs are merely a method of investing in mutual funds, the other method being a lump sum. A SIP calculator is a tool that helps you determine the returns you can avail when parking your funds in such investment tools.</p>
+               </div>
+
+               <div class="section">
+                   <h2>What is a SIP Calculator?</h2>
+                   <p>A SIP calculator is a simple tool that allows individuals to get an idea of the returns on their mutual fund investments made through SIP. SIP investments in mutual funds have become one of the most popular investment options for millennials lately.</p>
+               </div>
+
+               <div class="section">
+                   <h2>How can a SIP return calculator help you?</h2>
+                   <p>SIPs are a more lucrative mode of investing funds compared to a lump sum amount according to several mutual fund experts. It helps you become financially disciplined and create a habit of savings that can benefit you in the future.</p>
+               </div>
+
+               <div class="section">
+                   <h2>How do SIP calculators work?</h2>
+                   <p>A SIP plan calculator works on the following formula:</p>
+                   <p><strong>M = P × ({[1 + i]^n – 1} / i) × (1 + i)</strong></p>
+                   <p>Where:</p>
+                   <ul>
+                       <li><strong>M</strong> is the amount you receive upon maturity.</li>
+                       <li><strong>P</strong> is the amount you invest at regular intervals.</li>
+                       <li><strong>n</strong> is the number of payments you have made.</li>
+                       <li><strong>i</strong> is the periodic rate of interest.</li>
+                   </ul>
+               </div>
+
+               <div class="section">
+                   <h2>How to use Groww’s systematic investment plan calculator?</h2>
+                   <p>You can use the SIP amount calculator from Groww within a few clicks. Just enter the monthly invested amount, the number of years for which you want to stay invested, and the expected rate of return.</p>
+               </div>
+
+               <div class="section">
+                   <h2>Advantages of using Groww systematic investment plan calculator</h2>
+                   <ul>
+                       <li>Plan your investment based on the amount and tenure.</li>
+                       <li>Helps you compute an estimation of the total value of investments at the end of your SIP tenure.</li>
+                       <li>Shows accurate results and helps you save time required during a manual calculation.</li>
+                   </ul>
+               </div>
+           </div>
+
+
+
+       </div>
+  <!--   //second row second column -->
+     <div class="col-sm-6" style="background-color:blueg;">
+ <div class="container mt-5 mb-5 ">
+
+   <h2 class="mb-4">FAQs</h2>
+   <div id="faqAccordion" class="accordion ">
+
+       <div class="card ">
+           <div class="card-header" id="headingOne">
+               <h5 class="mb-0 ">
+                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       How much can I invest in a SIP?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#faqAccordion">
+               <div class="card-body">
+                   You can start investing in a SIP with as little as ₹500 per month, depending on the mutual fund scheme.
+               </div>
+           </div>
+       </div>
+
+       <div class="card">
+           <div class="card-header" id="headingTwo">
+               <h5 class="mb-0">
+                   <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                       What is the maximum tenure of a SIP?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+               <div class="card-body">
+                   SIPs can be continued indefinitely or for a fixed period chosen by the investor, usually ranging from 1 year to several decades.
+               </div>
+           </div>
+       </div>
+
+       <div class="card">
+           <div class="card-header" id="headingThree">
+               <h5 class="mb-0">
+                   <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                       Are SIPs similar to mutual funds?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+               <div class="card-body">
+                   SIP is a method of investing in mutual funds in a disciplined manner rather than a separate financial product.
+               </div>
+           </div>
+       </div>
+
+       <div class="card">
+           <div class="card-header" id="headingFour">
+               <h5 class="mb-0">
+                   <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                       Can I modify my SIP amount?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#faqAccordion">
+               <div class="card-body">
+                   Yes, you can increase or decrease your SIP amount through a step-up SIP or by modifying your mandate.
+               </div>
+           </div>
+       </div>
+
+       <div class="card">
+           <div class="card-header" id="headingFive">
+               <h5 class="mb-0">
+                   <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                       Do SIPs allow only equity mutual fund investments?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#faqAccordion">
+               <div class="card-body">
+                   No, SIPs are available for equity, debt, hybrid, and other mutual fund categories.
+               </div>
+           </div>
+       </div>
+
+       <div class="card">
+           <div class="card-header" id="headingSix">
+               <h5 class="mb-0">
+                   <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                       What are the types of SIPs available?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#faqAccordion">
+               <div class="card-body">
+                   Types of SIPs include Regular SIP, Step-up SIP, Perpetual SIP, and Trigger SIP.
+               </div>
+           </div>
+       </div>
+
+       <div class="card">
+           <div class="card-header" id="headingSeven">
+               <h5 class="mb-0">
+                   <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                       Can I renew a SIP?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#faqAccordion">
+               <div class="card-body">
+                   Yes, SIPs can be renewed by extending the investment period before it expires.
+               </div>
+           </div>
+       </div>
+
+       <div class="card">
+           <div class="card-header" id="headingEight">
+               <h5 class="mb-0">
+                   <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                       Can I pause my investments in a SIP?
+                   </button>
+               </h5>
+           </div>
+           <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#faqAccordion">
+               <div class="card-body " >
+                   Yes, many mutual fund houses offer a SIP pause facility, allowing investors to temporarily stop contributions.
+               </div>
+           </div>
+       </div>
+
+   </div>
+ </div>
+     </div>
+   </div>
+  <!--   //third row -->
+     <div  class="row navbar-dark bg-dark  mt-5 footer2 container-fluid" >
+  <!--        //third row first column -->
+       <div class="col-sm-12 " >
+         <div class=" text-center" style="margin-bottom:0">
+         <p id="backToTopBtn" style="color:white;">
+
+              Back To Home
+
+             </p>
+       </div>
+
+         </div>
+  <!--      //third row second column -->
+       <div class="col-sm-0 " style="background-color:pink;">    </div>
+      </div>
+      <script>
+              function syncInputs(id, isManual = false) {
+                  const slider = document.getElementById(`${id}-slider`);
+                  const numberInput = document.getElementById(id);
+                  if (isManual) {
+                      slider.value = numberInput.value;
+                  } else {
+                      numberInput.value = slider.value;
+                  }
+                  calculateSIP();
+              }
+              function calculateSIP() {
+                  let P = parseFloat(document.getElementById("amount").value);
+                  let r = parseFloat(document.getElementById("rate").value) / 100 / 12;
+                  let n = parseInt(document.getElementById("years").value) * 12;
+                  let investedAmount = P * n;
+                  let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+                  let estReturns = futureValue - investedAmount;
+                  document.getElementById("invested").textContent = investedAmount.toFixed(2);
+                  document.getElementById("returns").textContent = estReturns.toFixed(2);
+                  document.getElementById("total").textContent = futureValue.toFixed(2);
+                  updateChart(investedAmount, estReturns);
+              }
+              let sipChart;
+              function updateChart(invested, returns) {
+                  let ctx = document.getElementById("sipChart").getContext("2d");
+                  if (sipChart) sipChart.destroy();
+                  sipChart = new Chart(ctx, {
+                      type: "doughnut",
+                      data: {
+                          labels: ["Invested Amount", "Est. Returns"],
+                          datasets: [{
+                              data: [invested, returns],
+                              backgroundColor: ["#4CAF50", "#2196F3"]
+                          }]
+                      }
+                  });
+              }
+              calculateSIP();
+
+
+          // Get the button
+const backToTopBtn = document.getElementById("backToTopBtn");
+
+// When the user scrolls down 20px from the top, show the button
+window.onscroll = function () {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    backToTopBtn.style.display = "block";
+  } else {
+    backToTopBtn.style.display = "none";
+  }
+};
+
+// When the user clicks the button, scroll to the top of the page
+backToTopBtn.addEventListener("click", function () {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+});
+          </script>
+
+      <style>
+              bodyss {
+                  font-family: Arial, sans-serif;
+                  margin: 20px;
+                  padding: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  background-color: #f4f4f4;
+              }
+              img {
+  border-radius: 50%;
+}
+              .container {
+                  background: white;
+                  padding: 20px;
+                  border-radius: 10px;
+                  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                  max-width: 500px;
+                  width: 100%;
+              }
+              .input-group {
+                  margin-bottom: 15px;
+              }
+              .input-group label {
+                  display: block;
+                  margin-bottom: 5px;
+              }
+
+              .footer1 {
+                  display: block;
+                  margin-top: 10px;
+                  height: 50px;
+              }
+              .slider-container {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+              }
+              .slider-container input[type="number"] {
+                  width: 80px;
+                  text-align: center;
+              }
+              .result-box {
+                  background: #eef;
+                  padding: 10px;
+                  border-radius: 5px;
+                  margin-top: 20px;
+              }
+              .chart-container {
+                  width: 300px;
+                  margin: 20px auto;
+              }
+
+              // for faq
+              .faq-header {
+              cursor: pointer;
+              transition: background-color 0.3s;
+            }
+            .faq-header:hover {
+              background-color: #f8f9fa;
+            }
+            .card {
+              margin-bottom: 8px;
+              border: 1px solid rgba(0,0,0,.125);
+            }
+            .bi-chevron-down {
+              transition: transform 0.3s;
+            }
+            .collapsed .bi-chevron-down {
+              transform: rotate(0deg); /* Down arrow */
+            }
+            .bi-chevron-down:not(.collapsed) {
+              transform: rotate(180deg); /* Up arrow */
+
+
+          </style>
+</body>
+</html>
