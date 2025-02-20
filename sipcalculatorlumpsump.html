@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.2/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Bootstrap Icons (for chevron) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -25,17 +25,17 @@
   <div class="d-flex align-items-center navbar-brand">
     <img src="logo.png" alt="Logo" class="mr-2" style="width:50px;height:50px;">
     <h6 class="text-white mb-0">FinancialTools.com</h6>
-  </div>   
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>     
+  </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item px-2">
         <a class="nav-link" href="index.html">Home</a>
       </li>
       <li class="nav-item px-2">
-        <a class="nav-link" href="Aboutus.html">About Us</a>
+        <a class="nav-link" href="aboutus.html">About Us</a>
       </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="privacypolicy.html">Privacy Policy</a>
@@ -44,58 +44,69 @@
   </div>
 </nav>
 
-    
 
 
   <!-- //first row first column -->
-  <div class="row">
-  <!-- First row, first column -->
-  <div class="col-sm-6" style="background-color:yellowg;">
-    <div class="container mt-5 table1">
-      <div class="container">
-        <h2 class="text-center mb-4">Retirement Calculator (India)</h2>
-        <form id="retirementForm">
-          <div class="form-group">
-            <label>Your Current Age:</label>
-            <input type="number" class="form-control" id="currentAge" value="30" required>
-          </div>
-          <div class="form-group">
-            <label>Your Retirement Age:</label>
-            <input type="number" class="form-control" id="retirementAge" value="60" required>
-          </div>
-          <div class="form-group">
-            <label>Life Expectancy (India Avg: 70):</label>
-            <input type="number" class="form-control" id="lifeExpectancy" value="70" required>
-          </div>
-          <div class="form-group">
-            <label>Your Monthly Expenses (₹):</label>
-            <input type="number" class="form-control" id="monthlyExpense" value="40000" required>
-          </div>
-          <div class="form-group">
-            <label>Average Inflation Rate (%):</label>
-            <input type="number" class="form-control" id="inflationRate" value="3" required>
-          </div>
-          <div class="form-group">
-            <label>Expected ROI (%):</label>
-            <input type="number" class="form-control" id="investmentReturn" value="7" required>
-          </div>
-          <div class="form-group">
-            <label>Existing Savings for Retirement (₹):</label>
-            <input type="number" class="form-control" id="existingSavings" value="200000" required>
-          </div>
-          <button type="button" class="btn btn-success btn-block" onclick="calculateRetirement()">Calculate Retirement Plan</button>
-        </form>
-        <div id="result" class="result-box"></div>
-      </div>
-    </div>
-  </div>
+  <div  class="row">
+  <!--   //first row first column -->
+    <div class="col-sm-6" style="background-colorf:yellow;">
+      <div class="container mt-5 table1">
 
-       <div class="col-sm-6" style="background-colorf:orange;">
+       <h2>SIP Calculator LumpSump</h2>
+
+         <div class="container">
+           <div  class="row">
+                           <a href="sipcalculator.html" class="btn  btn-outline-secondary col-sm-6 text-white">
+  Monthly SIP
+</a>
+               
+             
+             
+           
+                <a href="sipcalculatorlumpsump.html" class="btn btn-primary col-sm-6">
+  Lumpsump
+</a>
+           </div>
+           </div>
+       <div class="input-group m">
+           <label for="amount">Total Investment (₹)</label>
+           <div class="slider-container">
+               <input type="range" id="amount-slider" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount')">
+               <input type="number" id="amount" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount', true)">
+           </div>
+       </div>
+       <div class="input-group">
+           <label for="rate">Expected Return Rate (p.a.) (%)</label>
+           <div class="slider-container">
+               <input type="range" id="rate-slider" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate')">
+               <input type="number" id="rate" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate', true)">
+           </div>
+       </div>
+       <div class="input-group">
+           <label for="years">Time Period (Years)</label>
+           <div class="slider-container">
+               <input type="range" id="years-slider" min="1" max="30" step="1" value="10" oninput="syncInputs('years')">
+               <input type="number" id="years" min="1" max="30" step="1" value="10" oninput="syncInputs('years', true)">
+           </div>
+       </div>
+       <div class="result-box">
+           <p>Invested Amount: <strong>₹<span id="invested">0</span></strong></p>
+           <p>Est. Returns: <strong>₹<span id="returns">0</span></strong></p>
+           <p>Total Value: <strong>₹<span id="total">0</span></strong></p>
+       </div>
+       <div class="chart-container">
+           <canvas id="sipChart"></canvas>
+       </div>
+       <button onclick="calculateSIP()">Invest Now</button>
+     </div>
+  </div>
+  <!--   //first row second column -->
+    <div class="col-sm-6" style="background-colorf:orange;">
       <div class="container mt-5 ">
 
         <div class=".container-fluid mt-sm-5 mb-sm-5">
         <div class="card bg-primary text-white">
-        <div class="card-body " >  <af href="sipcalculator.html">SIP Calculator</af> </div>
+        <div class="card-body">SIP Calculator</div>
       </div>
       <br>
       <div class="card bg-success text-white">
@@ -150,9 +161,12 @@
 
       </div>
       </div>
+
+
+
+      </div>
+
   <!--  /second row -->
-      
-    </div>  
    <div  class="row mb-05">
   <!--    //second row first column -->
      <div class="col-sm-6" style="background-colorf:red;">
@@ -362,18 +376,33 @@
                   }
                   calculateSIP();
               }
-              function calculateSIP() {
-                  let P = parseFloat(document.getElementById("amount").value);
-                  let r = parseFloat(document.getElementById("rate").value) / 100 / 12;
-                  let n = parseInt(document.getElementById("years").value) * 12;
-                  let investedAmount = P * n;
-                  let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-                  let estReturns = futureValue - investedAmount;
-                  document.getElementById("invested").textContent = investedAmount.toFixed(2);
-                  document.getElementById("returns").textContent = estReturns.toFixed(2);
-                  document.getElementById("total").textContent = futureValue.toFixed(2);
-                  updateChart(investedAmount, estReturns);
-              }
+          function calculateSIP() {
+    // Get input values     A = P (1 + r/n) ^ nt
+
+
+    let P = parseFloat(document.getElementById("amount").value); // Principal (initial investment)
+    let r = parseFloat(document.getElementById("rate").value) / 100; // Annual interest rate (converted to decimal)
+    let t = parseInt(document.getElementById("years").value); // Time in years
+    let n = 1; // Number of times interest is compounded per year (monthly compounding)
+
+    // Calculate future value using the formula A = P * (1 + r/n)^(nt)
+  let A = P * Math.pow(1 + r / n, n * t);
+//      let A = P *   * Math.pow(1 + r / n, n * t);
+
+    // Calculate invested amount and estimated returns
+    let investedAmount = P; // Total invested amount
+    let estReturns = A - P; // Estimated returns (future value - principal)
+
+    // Display results
+    document.getElementById("invested").textContent = investedAmount.toFixed(2);
+    document.getElementById("returns").textContent = estReturns.toFixed(2);
+    document.getElementById("total").textContent = A.toFixed(2);
+
+    // Update chart (if needed)
+    updateChart(investedAmount, estReturns);
+}
+          
+          
               let sipChart;
               function updateChart(invested, returns) {
                   let ctx = document.getElementById("sipChart").getContext("2d");
@@ -409,47 +438,6 @@ backToTopBtn.addEventListener("click", function () {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 });
-          
-          function calculateRetirement() {
-    let currentAge = parseInt(document.getElementById("currentAge").value);
-    let retirementAge = parseInt(document.getElementById("retirementAge").value);
-    let lifeExpectancy = parseInt(document.getElementById("lifeExpectancy").value);
-    let monthlyExpense = parseFloat(document.getElementById("monthlyExpense").value);
-    let inflationRate = parseFloat(document.getElementById("inflationRate").value) / 100;
-    let investmentReturn = parseFloat(document.getElementById("investmentReturn").value) / 100;
-    let existingSavings = parseFloat(document.getElementById("existingSavings").value);
-
-    let retirementType = document.querySelector('input[name="retirementType"]:checked').value;
-    let investmentType = document.querySelector('input[name="investmentType"]:checked').value;
-
-    let yearsToRetirement = retirementAge - currentAge;
-    let yearsAfterRetirement = lifeExpectancy - retirementAge;
-
-    // Updated multipliers for higher corpus values
-    let lifestyleMultiplier = retirementType === "king" ? 3 : retirementType === "monk" ? 1.5 : 2;
-    let futureMonthlyExpense = monthlyExpense * lifestyleMultiplier * Math.pow(1 + inflationRate, yearsToRetirement);
-    let annualExpense = futureMonthlyExpense * 12;
-
-    // Adjust returns based on investment type
-    let adjustedInvestmentReturn = investmentType === "aggressive" ? investmentReturn + 0.02 : investmentReturn;
-
-    // Calculate the required corpus using annuity formula
-    let retirementCorpus = (annualExpense * (1 - Math.pow(1 + adjustedInvestmentReturn, -yearsAfterRetirement))) / adjustedInvestmentReturn;
-
-    // Increase corpus to ensure 2x-3x realistic values
-    let enhancedCorpus = retirementCorpus * lifestyleMultiplier;
-
-    let requiredCorpus = Math.max(enhancedCorpus - existingSavings, 0);
-    
-    let monthsToSave = yearsToRetirement * 12;
-    let monthlySavings = requiredCorpus / ((Math.pow(1 + adjustedInvestmentReturn / 12, monthsToSave) - 1) / (adjustedInvestmentReturn / 12));
-
-    document.getElementById("result").innerHTML = `
-        <b>Required Retirement Corpus:</b> ₹${Math.round(enhancedCorpus).toLocaleString()}<br>
-        <b>Monthly Savings Needed:</b> ₹${Math.round(monthlySavings).toLocaleString()}
-    `;
-    document.getElementById("result").style.display = "block";
-}
           </script>
 
       <style>

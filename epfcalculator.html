@@ -35,7 +35,7 @@
         <a class="nav-link" href="index.html">Home</a>
       </li>
       <li class="nav-item px-2">
-        <a class="nav-link" href="Aboutus.html">About Us</a>
+        <a class="nav-link" href="aboutus.html">About Us</a>
       </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="privacypolicy.html">Privacy Policy</a>
@@ -51,42 +51,53 @@
   <div  class="row">
   <!--   //first row first column -->
     <div class="col-sm-6" style="background-colorf:yellow;">
-      <div class="container mt-5 table1">
+     <div class="container mt-5 table1">
+    <h2>EPF Calculator</h2>
 
-       <h2>EPF Calculator</h2>
+    <div class="input-group m">
+        <label for="salary">Monthly Salary (Basic + DA) (₹)</label>
+        <div class="slider-container">
+            <input type="range" id="salary-slider" min="10000" max="200000" step="500" value="50000" oninput="syncInputs('salary')">
+            <input type="number" id="salary" min="10000" max="200000" step="500" value="50000" oninput="syncInputs('salary', true)">
+        </div>
+    </div>
+    <div class="input-group">
+        <label for="age">Your Age (Years)</label>
+        <div class="slider-container">
+            <input type="range" id="age-slider" min="18" max="60" step="1" value="30" oninput="syncInputs('age')">
+            <input type="number" id="age" min="18" max="60" step="1" value="30" oninput="syncInputs('age', true)">
+        </div>
+    </div>
+    <div class="input-group">
+        <label for="contribution">Your Contribution to EPF (%)</label>
+        <div class="slider-container">
+            <input type="range" id="contribution-slider" min="8" max="20" step="0.1" value="12" oninput="syncInputs('contribution')">
+            <input type="number" id="contribution" min="8" max="20" step="0.1" value="12" oninput="syncInputs('contribution', true)">
+        </div>
+    </div>
+    <div class="input-group">
+        <label for="increment">Annual Increase in Salary (%)</label>
+        <div class="slider-container">
+            <input type="range" id="increment-slider" min="0" max="20" step="0.1" value="5" oninput="syncInputs('increment')">
+            <input type="number" id="increment" min="0" max="20" step="0.1" value="5" oninput="syncInputs('increment', true)">
+        </div>
+    </div>
+    <div class="input-group">
+        <label for="rate">Rate of Interest (p.a.) (%)</label>
+        <div class="slider-container">
+            <input type="range" id="rate-slider" min="5" max="10" step="0.1" value="8.1" oninput="syncInputs('rate')">
+            <input type="number" id="rate" min="5" max="10" step="0.1" value="8.1" oninput="syncInputs('rate', true)">
+        </div>
+    </div>
 
-        
-       <div class="input-group m">
-           <label for="amount">Total Investment (₹)</label>
-           <div class="slider-container">
-               <input type="range" id="amount-slider" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount')">
-               <input type="number" id="amount" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount', true)">
-           </div>
-       </div>
-       <div class="input-group">
-           <label for="rate">Expected Return Rate (p.a.) (%)</label>
-           <div class="slider-container">
-               <input type="range" id="rate-slider" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate')">
-               <input type="number" id="rate" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate', true)">
-           </div>
-       </div>
-       <div class="input-group">
-           <label for="years">Time Period (Years)</label>
-           <div class="slider-container">
-               <input type="range" id="years-slider" min="1" max="30" step="1" value="10" oninput="syncInputs('years')">
-               <input type="number" id="years" min="1" max="30" step="1" value="10" oninput="syncInputs('years', true)">
-           </div>
-       </div>
-       <div class="result-box">
-           <p>Invested Amount: <strong>₹<span id="invested">0</span></strong></p>
-           <p>Est. Returns: <strong>₹<span id="returns">0</span></strong></p>
-           <p>Total Value: <strong>₹<span id="total">0</span></strong></p>
-       </div>
-       <div class="chart-container">
-           <canvas id="sipChart"></canvas>
-       </div>
-       <button onclick="calculateSIP()">Invest Now</button>
-     </div>
+    <div class="result-box">
+        <p>You will have accumulated: <strong>₹<span id="total">0</span></strong></p>
+        <p>By the time you retire</p>
+    </div>
+
+    <button onclick="calculateSIP()">Calculate EPF</button>
+</div>
+
   </div>
   <!--   //first row second column -->
     <div class="col-sm-6" style="background-colorf:orange;">
@@ -364,18 +375,49 @@
                   }
                   calculateSIP();
               }
-              function calculateSIP() {
-                  let P = parseFloat(document.getElementById("amount").value);
-                  let r = parseFloat(document.getElementById("rate").value) / 100 / 12;
-                  let n = parseInt(document.getElementById("years").value) * 12;
-                  let investedAmount = P * n;
-                  let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-                  let estReturns = futureValue - investedAmount;
-                  document.getElementById("invested").textContent = investedAmount.toFixed(2);
-                  document.getElementById("returns").textContent = estReturns.toFixed(2);
-                  document.getElementById("total").textContent = futureValue.toFixed(2);
-                  updateChart(investedAmount, estReturns);
-              }
+function calculateSIP() {
+    let salary = parseFloat(document.getElementById("salary").value); // Monthly Salary
+    let age = parseInt(document.getElementById("age").value); // Current Age
+    let contributionRate = parseFloat(document.getElementById("contribution").value) / 100; // EPF Contribution %
+    let incrementRate = parseFloat(document.getElementById("increment").value) / 100; // Annual Salary Increase %
+    let annualInterestRate = parseFloat(document.getElementById("rate").value) / 100; // Annual Interest Rate
+
+    let retirementAge = 60;
+    let yearsRemaining = retirementAge - age;
+    let totalEPF = 0;
+    let currentSalary = salary;
+    let monthlyInterestRate = annualInterestRate / 12;
+
+    let monthlyContribution = currentSalary * contributionRate * 2; // Employee + Employer contribution
+
+    for (let year = 1; year <= yearsRemaining; year++) {
+        for (let month = 1; month <= 12; month++) {
+            totalEPF += monthlyContribution; // Add contribution
+            totalEPF *= (1 + monthlyInterestRate); // Apply monthly compounding
+        }
+
+        // Apply salary increment at the start of each new year
+        currentSalary *= (1 + incrementRate);
+        monthlyContribution = currentSalary * contributionRate * 2; // Update contribution based on new salary
+    }
+
+    // Final EPF Amount - Rounded to match exact screenshot format
+    let finalAmount = Math.round(totalEPF);
+
+    // Update HTML output
+    document.getElementById("total").textContent = finalAmount.toLocaleString('en-IN');
+}
+
+
+
+
+
+
+
+
+
+
+
               let sipChart;
               function updateChart(invested, returns) {
                   let ctx = document.getElementById("sipChart").getContext("2d");
@@ -383,7 +425,7 @@
                   sipChart = new Chart(ctx, {
                       type: "doughnut",
                       data: {
-                          labels: ["Invested Amount", "Est. Returns"],
+                          labels: ["Total Invested", "Total Interest"],
                           datasets: [{
                               data: [invested, returns],
                               backgroundColor: ["#4CAF50", "#2196F3"]

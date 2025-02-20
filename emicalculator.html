@@ -57,30 +57,31 @@
 
         
        <div class="input-group m">
-           <label for="amount">Total Investment (₹)</label>
+           <label for="amount">Loan Amount : (₹)</label>
            <div class="slider-container">
-               <input type="range" id="amount-slider" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount')">
-               <input type="number" id="amount" min="1000" max="100000" step="500" value="25000" oninput="syncInputs('amount', true)">
+               <input type="range" id="amount-slider" min="10000" max="10000000" step="500" value="100000" oninput="syncInputs('amount')">
+               <input type="number" id="amount" min="10000" max="10000000" step="500" value="100000" oninput="syncInputs('amount', true)">
            </div>
        </div>
        <div class="input-group">
-           <label for="rate">Expected Return Rate (p.a.) (%)</label>
+           <label for="rate">Rate of Interest(p.a.) (%)</label>
            <div class="slider-container">
-               <input type="range" id="rate-slider" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate')">
-               <input type="number" id="rate" min="1" max="20" step="0.1" value="12" oninput="syncInputs('rate', true)">
+               <input type="range" id="rate-slider" min="1" max="20" step="0.1" value="6.5" oninput="syncInputs('rate')">
+               <input type="number" id="rate" min="1" max="20" step="0.1" value="6.5" oninput="syncInputs('rate', true)">
            </div>
        </div>
        <div class="input-group">
-           <label for="years">Time Period (Years)</label>
+           <label for="years">Loan Tenure (Years)</label>
            <div class="slider-container">
-               <input type="range" id="years-slider" min="1" max="30" step="1" value="10" oninput="syncInputs('years')">
-               <input type="number" id="years" min="1" max="30" step="1" value="10" oninput="syncInputs('years', true)">
+               <input type="range" id="years-slider" min="1" max="30" step="1" value="3" oninput="syncInputs('years')">
+               <input type="number" id="years" min="1" max="30" step="1" value="3" oninput="syncInputs('years', true)">
            </div>
        </div>
        <div class="result-box">
-           <p>Invested Amount: <strong>₹<span id="invested">0</span></strong></p>
-           <p>Est. Returns: <strong>₹<span id="returns">0</span></strong></p>
-           <p>Total Value: <strong>₹<span id="total">0</span></strong></p>
+            <p>Monthly EMI: <strong>₹<span id="returnsemi">0</span></strong></p>
+           <p>Principal Amount: <strong>₹<span id="invested">0</span></strong></p>
+           <p>Total Interest: <strong>₹<span id="interet">0</span></strong></p>
+           <p>Total Amount: <strong>₹<span id="total">0</span></strong></p>
        </div>
        <div class="chart-container">
            <canvas id="sipChart"></canvas>
@@ -364,18 +365,39 @@
                   }
                   calculateSIP();
               }
-              function calculateSIP() {
-                  let P = parseFloat(document.getElementById("amount").value);
-                  let r = parseFloat(document.getElementById("rate").value) / 100 / 12;
-                  let n = parseInt(document.getElementById("years").value) * 12;
-                  let investedAmount = P * n;
-                  let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-                  let estReturns = futureValue - investedAmount;
-                  document.getElementById("invested").textContent = investedAmount.toFixed(2);
-                  document.getElementById("returns").textContent = estReturns.toFixed(2);
-                  document.getElementById("total").textContent = futureValue.toFixed(2);
-                  updateChart(investedAmount, estReturns);
-              }
+          
+ function calculateSIP() {
+    let P = parseFloat(document.getElementById("amount").value);
+    let annualRate = parseFloat(document.getElementById("rate").value);
+    let N = parseInt(document.getElementById("years").value) * 12; // Convert years to months
+
+    let R = (annualRate / 100) / 12; // Monthly interest rate
+
+    if (P > 0 && R > 0 && N > 0) {
+        let EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+        let totalAmount = EMI * N;
+        let interestAmount = totalAmount - P;
+
+        document.getElementById("returnsemi").textContent = EMI.toFixed(2); // Monthly EMI
+        document.getElementById("invested").textContent = P.toFixed(2); // Principal amount
+        document.getElementById("interet").textContent = interestAmount.toFixed(2); // Total interest paid
+        document.getElementById("total").textContent = totalAmount.toFixed(2); // Total payment (Principal + Interest)
+
+        // Update the SIP Chart
+        updateChart(P, interestAmount);
+    } else {
+        document.getElementById("returnsemi").textContent = "0.00";
+        document.getElementById("invested").textContent = "0.00";
+        document.getElementById("interet").textContent = "0.00";
+        document.getElementById("total").textContent = "0.00";
+
+        // Reset the chart if invalid inputs
+        updateChart(0, 0);
+    }
+}
+
+
+
               let sipChart;
               function updateChart(invested, returns) {
                   let ctx = document.getElementById("sipChart").getContext("2d");
@@ -383,7 +405,7 @@
                   sipChart = new Chart(ctx, {
                       type: "doughnut",
                       data: {
-                          labels: ["Invested Amount", "Est. Returns"],
+                          labels: ["Principal Amount", "Interest Amount"],
                           datasets: [{
                               data: [invested, returns],
                               backgroundColor: ["#4CAF50", "#2196F3"]
