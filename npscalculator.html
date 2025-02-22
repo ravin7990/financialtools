@@ -50,51 +50,104 @@
   <!-- //first row first column -->
   <div  class="row">
   <!--   //first row first column -->
-    <div class="col-sm-6" style="background-colorf:yellow;">
-      <div class="container mt-5 table1">
+  <div class="col-sm-6">
+<div class="container mt-5 table1">
+    <h2>NPS Calculator</h2>
 
-       <h2>CARG Calculator</h2>
+    <!-- Investment per month -->
+    <div class="input-group m">
+        <label for="monthlyInvestment">Investment per month (₹)</label>
+        <div class="slider-container">
+            <input
+                type="range"
+                id="monthlyInvestment-slider"
+                min="1000"
+                max="100000"
+                step="500"
+                value="10000"
+                oninput="syncInputs('monthlyInvestment'); calculateNPS();"
+            />
+            <input
+                type="number"
+                id="monthlyInvestment"
+                min="1000"
+                max="100000"
+                step="500"
+                value="10000"
+                oninput="syncInputs('monthlyInvestment', true); calculateNPS();"
+            />
+        </div>
+    </div>
+
+    <!-- Expected return (p.a.) -->
+    <div class="input-group m">
+        <label for="rate">Expected return (p.a.) (%)</label>
+        <div class="slider-container">
+            <input
+                type="range"
+                id="rate-slider"
+                min="1"
+                max="20"
+                step="0.1"
+                value="9"
+                oninput="syncInputs('rate'); calculateNPS();"
+            />
+            <input
+                type="number"
+                id="rate"
+                min="1"
+                max="20"
+                step="0.1"
+                value="9"
+                oninput="syncInputs('rate', true); calculateNPS();"
+            />
+        </div>
+    </div>
+
+    <!-- Your age -->
+    <div class="input-group m">
+        <label for="age">Your age (Years)</label>
+        <div class="slider-container">
+            <input
+                type="range"
+                id="age-slider"
+                min="18"
+                max="60"
+                step="1"
+                value="20"
+                oninput="syncInputs('age'); calculateNPS();"
+            />
+            <input
+                type="number"
+                id="age"
+                min="18"
+                max="60"
+                step="1"
+                value="20"
+                oninput="syncInputs('age', true); calculateNPS();"
+            />
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div class="result-box">
+        <p>Total investment: <strong>₹<span id="totalInvestment">0</span></strong></p>
+        <p>Interest earned: <strong>₹<span id="interestEarned">0</span></strong></p>
+        <p>Maturity amount: <strong>₹<span id="maturityAmount">0</span></strong></p>
+        <p>Min. annuity investment: <strong>₹<span id="annuityInvestment">0</span></strong></p>
+    </div>
+</div>
 
 
-       <div class="input-group m">
-           <label for="amount">Total Investment (₹)</label>
-           <div class="slider-container">
-               <input type="range" id="amount-slider" min="1000" max="10000000" step="500" value="1000" oninput="syncInputs('amount')">
-               <input  style="width: 100%" type="number" id="amount" min="30000" max="1000" step="500" value="1000" oninput="syncInputs('amount', true)">
-           </div>
-       </div>
-       <div class="input-group" >
-           <label for="rate">Future Value(₹)</label>
-           <div class="slider-container" >
-               <input  style="width: 100%" type="range" id="rate-slider" min="1" max="10000000" step="0.1" value="20000" oninput="syncInputs('rate')">
-               <input style="width: 100%" type="number" id="rate" min="1" max="20" step="0.1" value="20000" oninput="syncInputs('rate', true)">
-           </div>
-       </div>
-       <div class="input-group">
-           <label for="years">Time Period (Years)</label>
-           <div class="slider-container">
-               <input  style="width: 100%" type="range" id="years-slider" min="1" max="30" step="1" value="5" oninput="syncInputs('years')">
-               <input style="width: 100%; float: left;" type="number" id="years" min="1" max="30" step="1" value="5" oninput="syncInputs('years', true)">
-           </div>
-       </div>
-       <div class="result-box">
-           <p class="invisible">Invested Amount: <strong>₹<span id="invested">0</span></strong></p>
-           <p>CARG Is  <strong><span id="returns"></span>%</strong></p>
-           <p class="invisible">Expected Return(₹): <strong>₹<span id="total">0</span></strong></p>
-       </div>
-       <div class="chart-container">
-           <canvas id="sipChart"></canvas>
-       </div>
-       <button onclick="calculateSIP()">Invest Now</button>
-     </div>
-  </div>
+</div>
+
   <!--   //first row second column -->
     <div class="col-sm-6" style="background-colorf:orange;">
       <div class="container mt-5 ">
 
         <div class=".container-fluid mt-sm-5 mb-sm-5">
         <div class="card bg-primary text-white">
-        <div class="card-body " >  SIP Calculator  </div>
+        <div class="card-body " >  <af href="sipcalculator.html">SIP Calculator</af> </div>
       </div>
       <br>
       <div class="card bg-success text-white">
@@ -161,22 +214,22 @@
 
        <div class="container">
                <div class="section">
-                   <h1>CARG Calculator – Systematic Investment Plan Calculator</h1>
+                   <h1>SIP Calculator – Systematic Investment Plan Calculator</h1>
                    <p>Prospective investors can think that SIPs and mutual funds are the same. However, SIPs are merely a method of investing in mutual funds, the other method being a lump sum. A SIP calculator is a tool that helps you determine the returns you can avail when parking your funds in such investment tools.</p>
                </div>
 
                <div class="section">
-                   <h2>What is a CARG Calculator?</h2>
+                   <h2>What is a SIP Calculator?</h2>
                    <p>A SIP calculator is a simple tool that allows individuals to get an idea of the returns on their mutual fund investments made through SIP. SIP investments in mutual funds have become one of the most popular investment options for millennials lately.</p>
                </div>
 
                <div class="section">
-                   <h2>How can a CARG return calculator help you?</h2>
+                   <h2>How can a SIP return calculator help you?</h2>
                    <p>SIPs are a more lucrative mode of investing funds compared to a lump sum amount according to several mutual fund experts. It helps you become financially disciplined and create a habit of savings that can benefit you in the future.</p>
                </div>
 
                <div class="section">
-                   <h2>How do CARG calculators work?</h2>
+                   <h2>How do SIP calculators work?</h2>
                    <p>A SIP plan calculator works on the following formula:</p>
                    <p><strong>M = P × ({[1 + i]^n – 1} / i) × (1 + i)</strong></p>
                    <p>Where:</p>
@@ -354,59 +407,66 @@
        <div class="col-sm-0 " style="background-color:pink;">    </div>
       </div>
       <script>
-              function syncInputs(id, isManual = false) {
-                  const slider = document.getElementById(`${id}-slider`);
-                  const numberInput = document.getElementById(id);
-                  if (isManual) {
-                      slider.value = numberInput.value;
-                  } else {
-                      numberInput.value = slider.value;
-                  }
-                  calculateSIP();
-              }
-          //CAGR = (FV / PV) 1 / n – 1
+          
+          
+      
+          
+          function calculateNPS() {
+    // Get user inputs
+    let monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value) || 0;
+    let annualRate = parseFloat(document.getElementById("rate").value) || 0;
+    let currentAge = parseInt(document.getElementById("age").value) || 0;
 
+    // Calculate number of months until retirement (assuming retirement at 60)
+    let yearsToInvest = 60 - currentAge;
+    if (yearsToInvest < 0) yearsToInvest = 0; // handle edge case if age > 60
+    let months = yearsToInvest * 12;
 
-             function calculateSIP() {
-    // Get input values
-    let PV = parseFloat(document.getElementById("amount").value); // Present Value (Initial Investment)
-    let FV = parseFloat(document.getElementById("rate").value);   // Future Value
-    let n = parseInt(document.getElementById("years").value);      // Number of years
+    // Convert annual rate (%) to monthly decimal
+    let monthlyRate = (annualRate / 100) / 12;
 
-    // Calculate CAGR
-    let CAGR = Math.pow(FV / PV, 1 / n) - 1;
+    // Calculate final corpus using monthly SIP formula
+    // A = M * [ ((1 + i)^n - 1 ) / i ]
+    let maturityAmount = 0;
+    if (monthlyRate > 0 && months > 0) {
+        maturityAmount = monthlyInvestment * ( (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate );
+    }
 
-    // Calculate Invested Amount and Estimated Returns
-    let investedAmount = PV;
-    let estReturns = CAGR * 100; // Convert CAGR to percentage
+    // Calculate total investment
+    let totalInvestment = monthlyInvestment * months;
 
-    // Display results
-    document.getElementById("invested").textContent = investedAmount.toFixed(2);
-    document.getElementById("returns").textContent = estReturns.toFixed(2);
+    // Interest earned
+    let interestEarned = maturityAmount - totalInvestment;
 
-    // Update chart (if needed)
-    updateChart(investedAmount, estReturns);
+    // Minimum annuity investment (40% of corpus, per NPS rules)
+    let annuityInvestment = maturityAmount * 0.40;
+
+    // Update the result fields (using Indian locale formatting)
+    document.getElementById("totalInvestment").textContent =
+        totalInvestment.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+    document.getElementById("interestEarned").textContent =
+        Math.round(interestEarned).toLocaleString('en-IN');
+    document.getElementById("maturityAmount").textContent =
+        Math.round(maturityAmount).toLocaleString('en-IN');
+    document.getElementById("annuityInvestment").textContent =
+        Math.round(annuityInvestment).toLocaleString('en-IN');
 }
-              let sipChart;
-              function updateChart(invested, returns) {
-                    let PV = parseFloat(document.getElementById("amount").value); // Present Value (Initial Investment)
-                    let FV = parseFloat(document.getElementById("rate").value);   // Future Value
-                    let n = parseInt(document.getElementById("years").value);      // Number of years
-                  let ctx = document.getElementById("sipChart").getContext("2d");
-                  if (sipChart) sipChart.destroy();
-                  sipChart = new Chart(ctx, {
-                      type: "doughnut",
-                      data: {
-                          labels: ["Invested Amount", "Expected Returns "],
-                          datasets: [{
-                              data: [PV, FV],
-                              backgroundColor: ["#4CAF50", "#2196F3"]
-                          }]
-                      }
-                  });
-              }
-              calculateSIP();
 
+          
+                        function syncInputs(field, isNumberInput) {
+    const rangeEl = document.getElementById(field + '-slider');
+    const numberEl = document.getElementById(field);
+
+    if (isNumberInput) {
+        rangeEl.value = numberEl.value;
+    } else {
+        numberEl.value = rangeEl.value;
+    }
+}
+    
+          document.addEventListener("DOMContentLoaded", function() {
+  calculateNPS(); // Calculate once on page load
+});
 
           // Get the button
 const backToTopBtn = document.getElementById("backToTopBtn");

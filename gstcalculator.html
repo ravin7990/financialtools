@@ -51,42 +51,71 @@
   <div  class="row">
   <!--   //first row first column -->
     <div class="col-sm-6" style="background-colorf:yellow;">
-      <div class="container mt-5 table1">
+    <div class="container mt-5 table1">
+    <h2>GST Calculator</h2>
 
-       <h2>CARG Calculator</h2>
+    <!-- Toggle for Excluding GST or Including GST -->
+    <div class="mb-3">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gstOption" id="excludingGST" value="excluding" checked>
+            <label class="form-check-label" for="excludingGST">Excluding GST</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gstOption" id="includingGST" value="including">
+            <label class="form-check-label" for="includingGST">Including GST</label>
+        </div>
+    </div>
 
+    <!-- Total amount (₹) -->
+    <div class="input-group m">
+        <label for="amount">Total amount (₹)</label>
+        <div class="slider-container">
+            <input
+                type="range"
+                id="amount-slider"
+                min="1"
+                max="100000"
+                step="100"
+                value="25000"
+                oninput="syncInputs('amount')"
+            />
+            <input
+                style="width: 100%"
+                type="number"
+                id="amount"
+                min="1"
+                max="100000"
+                step="100"
+                value="25000"
+                oninput="syncInputs('amount', true)"
+            />
+        </div>
+    </div>
 
-       <div class="input-group m">
-           <label for="amount">Total Investment (₹)</label>
-           <div class="slider-container">
-               <input type="range" id="amount-slider" min="1000" max="10000000" step="500" value="1000" oninput="syncInputs('amount')">
-               <input  style="width: 100%" type="number" id="amount" min="30000" max="1000" step="500" value="1000" oninput="syncInputs('amount', true)">
-           </div>
-       </div>
-       <div class="input-group" >
-           <label for="rate">Future Value(₹)</label>
-           <div class="slider-container" >
-               <input  style="width: 100%" type="range" id="rate-slider" min="1" max="10000000" step="0.1" value="20000" oninput="syncInputs('rate')">
-               <input style="width: 100%" type="number" id="rate" min="1" max="20" step="0.1" value="20000" oninput="syncInputs('rate', true)">
-           </div>
-       </div>
-       <div class="input-group">
-           <label for="years">Time Period (Years)</label>
-           <div class="slider-container">
-               <input  style="width: 100%" type="range" id="years-slider" min="1" max="30" step="1" value="5" oninput="syncInputs('years')">
-               <input style="width: 100%; float: left;" type="number" id="years" min="1" max="30" step="1" value="5" oninput="syncInputs('years', true)">
-           </div>
-       </div>
-       <div class="result-box">
-           <p class="invisible">Invested Amount: <strong>₹<span id="invested">0</span></strong></p>
-           <p>CARG Is  <strong><span id="returns"></span>%</strong></p>
-           <p class="invisible">Expected Return(₹): <strong>₹<span id="total">0</span></strong></p>
-       </div>
-       <div class="chart-container">
-           <canvas id="sipChart"></canvas>
-       </div>
-       <button onclick="calculateSIP()">Invest Now</button>
-     </div>
+    <!-- Tax slab (%) -->
+    <div class="input-group m">
+        <label for="taxSlab">Tax slab (%)</label>
+        <div class="slider-container">
+            <select id="taxSlab" class="form-control">
+                <option value="5" selected >5%</option>
+                <option value="12">12%</option>
+                <option value="18">18%</option>
+                <option value="28">28%</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Results -->
+<div class="result-box">
+    <p>Total GST: <strong>₹<span id="totalGST">0</span></strong></p>
+    <p id="resultLabel">Post-GST Amount: 
+        <strong>₹<span id="postGST">0</span></strong>
+    </p>
+ 
+</div>
+    <button onclick="calculateGST()">Calculate</button>
+</div>
+
   </div>
   <!--   //first row second column -->
     <div class="col-sm-6" style="background-colorf:orange;">
@@ -354,60 +383,59 @@
        <div class="col-sm-0 " style="background-color:pink;">    </div>
       </div>
       <script>
-              function syncInputs(id, isManual = false) {
-                  const slider = document.getElementById(`${id}-slider`);
-                  const numberInput = document.getElementById(id);
-                  if (isManual) {
-                      slider.value = numberInput.value;
-                  } else {
-                      numberInput.value = slider.value;
-                  }
-                  calculateSIP();
-              }
-          //CAGR = (FV / PV) 1 / n – 1
+    
+function calculateGST() {
+    // Get the selected GST option (excluding or including)
+    const gstOption = document.querySelector('input[name="gstOption"]:checked').value;
 
+    // Get the total amount from the number input and convert to float
+    const amount = parseFloat(document.getElementById('amount').value);
 
-             function calculateSIP() {
-    // Get input values
-    let PV = parseFloat(document.getElementById("amount").value); // Present Value (Initial Investment)
-    let FV = parseFloat(document.getElementById("rate").value);   // Future Value
-    let n = parseInt(document.getElementById("years").value);      // Number of years
+    // Get the tax slab percentage from the dropdown and convert to float
+    const taxSlab = parseFloat(document.getElementById('taxSlab').value);
 
-    // Calculate CAGR
-    let CAGR = Math.pow(FV / PV, 1 / n) - 1;
+    // Variables to store calculated values
+    let gstAmount, otherAmount, labelText;
 
-    // Calculate Invested Amount and Estimated Returns
-    let investedAmount = PV;
-    let estReturns = CAGR * 100; // Convert CAGR to percentage
+    // Perform calculations based on the selected GST option
+    if (gstOption === 'excluding') {
+        // When excluding GST: input is the amount before GST
+        gstAmount = amount * (taxSlab / 100);        // GST = amount * tax rate
+        otherAmount = amount + gstAmount;            // Total including GST
+        labelText = 'Post-GST Amount:';              // Label for total including GST
+    } else { // 'including'
+        // When including GST: input is the total amount including GST
+        const originalAmount = amount / (1 + taxSlab / 100); // Amount before GST
+        gstAmount = amount - originalAmount;         // GST = total - original amount
+        otherAmount = originalAmount;                // Display the original amount
+        labelText = 'Pre-GST Amount:';               // Label for amount before GST
+    }
 
-    // Display results
-    document.getElementById("invested").textContent = investedAmount.toFixed(2);
-    document.getElementById("returns").textContent = estReturns.toFixed(2);
+    // Update the result displays with formatted values (2 decimal places)
+    document.getElementById('totalGST').textContent = gstAmount.toFixed(2);
+ //   document.getElementById('gstamount').textContent = gstAmount.toFixed(2);
+    document.getElementById('postGST').textContent = otherAmount.toFixed(2);
 
-    // Update chart (if needed)
-    updateChart(investedAmount, estReturns);
+    // Update the label text to reflect the calculation type
+    const resultLabel = document.getElementById('resultLabel');
+    resultLabel.childNodes[0].nodeValue = labelText + ' ';
 }
-              let sipChart;
-              function updateChart(invested, returns) {
-                    let PV = parseFloat(document.getElementById("amount").value); // Present Value (Initial Investment)
-                    let FV = parseFloat(document.getElementById("rate").value);   // Future Value
-                    let n = parseInt(document.getElementById("years").value);      // Number of years
-                  let ctx = document.getElementById("sipChart").getContext("2d");
-                  if (sipChart) sipChart.destroy();
-                  sipChart = new Chart(ctx, {
-                      type: "doughnut",
-                      data: {
-                          labels: ["Invested Amount", "Expected Returns "],
-                          datasets: [{
-                              data: [PV, FV],
-                              backgroundColor: ["#4CAF50", "#2196F3"]
-                          }]
-                      }
-                  });
-              }
-              calculateSIP();
 
 
+
+
+
+// Corrected event listeners
+document.querySelectorAll('input[name="gstOption"]').forEach(radio => {
+    radio.addEventListener('change', calculateGST);
+});
+
+document.getElementById('taxSlab').addEventListener('change', calculateGST);
+document.getElementById('amount').addEventListener('input', () => syncInputs('amount', true));
+document.getElementById('amount-slider').addEventListener('input', () => syncInputs('amount'));
+
+// Initial calculation
+calculateGST();
           // Get the button
 const backToTopBtn = document.getElementById("backToTopBtn");
 

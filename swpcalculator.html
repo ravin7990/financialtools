@@ -51,42 +51,50 @@
   <div  class="row">
   <!--   //first row first column -->
     <div class="col-sm-6" style="background-colorf:yellow;">
-      <div class="container mt-5 table1">
+     <div class="container mt-5 table1">
+    <h2>SWP Calculator</h2>
 
-       <h2>CARG Calculator</h2>
+    <div class="input-group m">
+        <label for="lumpsum">Initial Investment (₹)</label>
+        <div class="slider-container">
+            <input type="range" id="lumpsum-slider" min="10000" max="10000000" step="5000" value="100000" oninput="syncInputs('lumpsum')">
+            <input type="number" id="lumpsum" min="10000" max="10000000" step="5000" value="100000" oninput="syncInputs('lumpsum', true)">
+        </div>
+    </div>
 
+    <div class="input-group">
+        <label for="rate">Expected Return Rate (p.a.) (%)</label>
+        <div class="slider-container">
+            <input type="range" id="rate-slider" min="1" max="20" step="0.1" value="6.5" oninput="syncInputs('rate')">
+            <input type="number" id="rate" min="1" max="20" step="0.1" value="6.5" oninput="syncInputs('rate', true)">
+        </div>
+    </div>
 
-       <div class="input-group m">
-           <label for="amount">Total Investment (₹)</label>
-           <div class="slider-container">
-               <input type="range" id="amount-slider" min="1000" max="10000000" step="500" value="1000" oninput="syncInputs('amount')">
-               <input  style="width: 100%" type="number" id="amount" min="30000" max="1000" step="500" value="1000" oninput="syncInputs('amount', true)">
-           </div>
-       </div>
-       <div class="input-group" >
-           <label for="rate">Future Value(₹)</label>
-           <div class="slider-container" >
-               <input  style="width: 100%" type="range" id="rate-slider" min="1" max="10000000" step="0.1" value="20000" oninput="syncInputs('rate')">
-               <input style="width: 100%" type="number" id="rate" min="1" max="20" step="0.1" value="20000" oninput="syncInputs('rate', true)">
-           </div>
-       </div>
-       <div class="input-group">
-           <label for="years">Time Period (Years)</label>
-           <div class="slider-container">
-               <input  style="width: 100%" type="range" id="years-slider" min="1" max="30" step="1" value="5" oninput="syncInputs('years')">
-               <input style="width: 100%; float: left;" type="number" id="years" min="1" max="30" step="1" value="5" oninput="syncInputs('years', true)">
-           </div>
-       </div>
-       <div class="result-box">
-           <p class="invisible">Invested Amount: <strong>₹<span id="invested">0</span></strong></p>
-           <p>CARG Is  <strong><span id="returns"></span>%</strong></p>
-           <p class="invisible">Expected Return(₹): <strong>₹<span id="total">0</span></strong></p>
-       </div>
-       <div class="chart-container">
-           <canvas id="sipChart"></canvas>
-       </div>
-       <button onclick="calculateSIP()">Invest Now</button>
-     </div>
+    <div class="input-group">
+        <label for="withdrawal">Monthly Withdrawal Amount (₹)</label>
+        <div class="slider-container">
+            <input type="range" id="withdrawal-slider" min="1000" max="100000" step="500" value="3000" oninput="syncInputs('withdrawal')">
+            <input type="number" id="withdrawal" min="1000" max="100000" step="500" value="3000" oninput="syncInputs('withdrawal', true)">
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="years">Withdrawal Duration (Years)</label>
+        <div class="slider-container">
+            <input type="range" id="years-slider" min="1" max="30" step="1" value="3" oninput="syncInputs('years')">
+            <input type="number" id="years" min="1" max="30" step="1" value="3" oninput="syncInputs('years', true)">
+        </div>
+    </div>
+
+    <div class="result-box">
+        <p>Total Withdrawn: <strong>₹<span id="total-withdrawn">0</span></strong></p>
+        <p>Interest Earned: <strong>₹<span id="total-interest">0</span></strong></p>
+        <p>Final Balance: <strong>₹<span id="final-balance">0</span></strong></p>
+    </div>
+
+    <button onclick="calculateSWP()">Calculate SWP</button>
+</div>
+
   </div>
   <!--   //first row second column -->
     <div class="col-sm-6" style="background-colorf:orange;">
@@ -94,7 +102,7 @@
 
         <div class=".container-fluid mt-sm-5 mb-sm-5">
         <div class="card bg-primary text-white">
-        <div class="card-body " >  SIP Calculator  </div>
+        <div class="card-body " >  <af href="sipcalculator.html">SIP Calculator</af> </div>
       </div>
       <br>
       <div class="card bg-success text-white">
@@ -161,22 +169,22 @@
 
        <div class="container">
                <div class="section">
-                   <h1>CARG Calculator – Systematic Investment Plan Calculator</h1>
+                   <h1>SIP Calculator – Systematic Investment Plan Calculator</h1>
                    <p>Prospective investors can think that SIPs and mutual funds are the same. However, SIPs are merely a method of investing in mutual funds, the other method being a lump sum. A SIP calculator is a tool that helps you determine the returns you can avail when parking your funds in such investment tools.</p>
                </div>
 
                <div class="section">
-                   <h2>What is a CARG Calculator?</h2>
+                   <h2>What is a SIP Calculator?</h2>
                    <p>A SIP calculator is a simple tool that allows individuals to get an idea of the returns on their mutual fund investments made through SIP. SIP investments in mutual funds have become one of the most popular investment options for millennials lately.</p>
                </div>
 
                <div class="section">
-                   <h2>How can a CARG return calculator help you?</h2>
+                   <h2>How can a SIP return calculator help you?</h2>
                    <p>SIPs are a more lucrative mode of investing funds compared to a lump sum amount according to several mutual fund experts. It helps you become financially disciplined and create a habit of savings that can benefit you in the future.</p>
                </div>
 
                <div class="section">
-                   <h2>How do CARG calculators work?</h2>
+                   <h2>How do SIP calculators work?</h2>
                    <p>A SIP plan calculator works on the following formula:</p>
                    <p><strong>M = P × ({[1 + i]^n – 1} / i) × (1 + i)</strong></p>
                    <p>Where:</p>
@@ -364,42 +372,59 @@
                   }
                   calculateSIP();
               }
-          //CAGR = (FV / PV) 1 / n – 1
+          
+function calculateSIP() {
+    let principal = parseFloat(document.getElementById("lumpsum").value);
+    let annualRate = parseFloat(document.getElementById("rate").value) / 100;
+    let withdrawal = parseFloat(document.getElementById("withdrawal").value);
+    let years = parseInt(document.getElementById("years").value);
 
+    let months = years * 12;
+    let monthlyRate = annualRate / 12; // Convert annual rate to monthly rate
+    let balance = principal;
+    let totalWithdrawn = 0;
+    let totalInterest = 0;
 
-             function calculateSIP() {
-    // Get input values
-    let PV = parseFloat(document.getElementById("amount").value); // Present Value (Initial Investment)
-    let FV = parseFloat(document.getElementById("rate").value);   // Future Value
-    let n = parseInt(document.getElementById("years").value);      // Number of years
+    for (let i = 0; i < months; i++) {
+        let monthlyInterest = balance * monthlyRate; // Calculate interest first
+        totalInterest += monthlyInterest;
+        balance += monthlyInterest;
 
-    // Calculate CAGR
-    let CAGR = Math.pow(FV / PV, 1 / n) - 1;
+        if (balance >= withdrawal) {
+            balance -= withdrawal;
+            totalWithdrawn += withdrawal;
+        } else {
+            totalWithdrawn += balance;
+            balance = 0;
+            break;
+        }
+    }
 
-    // Calculate Invested Amount and Estimated Returns
-    let investedAmount = PV;
-    let estReturns = CAGR * 100; // Convert CAGR to percentage
-
-    // Display results
-    document.getElementById("invested").textContent = investedAmount.toFixed(2);
-    document.getElementById("returns").textContent = estReturns.toFixed(2);
-
-    // Update chart (if needed)
-    updateChart(investedAmount, estReturns);
+    document.getElementById("total-withdrawn").textContent = totalWithdrawn.toFixed(0);
+    document.getElementById("total-interest").textContent = totalInterest.toFixed(0);
+    document.getElementById("final-balance").textContent = balance.toFixed(0);
 }
+
+
+
+
+
+
+
+
+
+
+
               let sipChart;
               function updateChart(invested, returns) {
-                    let PV = parseFloat(document.getElementById("amount").value); // Present Value (Initial Investment)
-                    let FV = parseFloat(document.getElementById("rate").value);   // Future Value
-                    let n = parseInt(document.getElementById("years").value);      // Number of years
                   let ctx = document.getElementById("sipChart").getContext("2d");
                   if (sipChart) sipChart.destroy();
                   sipChart = new Chart(ctx, {
                       type: "doughnut",
                       data: {
-                          labels: ["Invested Amount", "Expected Returns "],
+                          labels: ["Total Invested", "Total Interest"],
                           datasets: [{
-                              data: [PV, FV],
+                              data: [invested, returns],
                               backgroundColor: ["#4CAF50", "#2196F3"]
                           }]
                       }
