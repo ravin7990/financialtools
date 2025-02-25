@@ -46,7 +46,6 @@
 
     
 
-
   <!-- //first row first column -->
   <div  class="row">
   <!--   //first row first column -->
@@ -54,12 +53,15 @@
      <div class="container mt-5 table1">
     <h2>SWP Calculator</h2>
 
-    <div class="input-group m">
+    <div class="input-group">
         <label for="lumpsum">Initial Investment (₹)</label>
-        <div class="slider-container">
+        
+       
+          <div class="slider-container">
             <input type="range" id="lumpsum-slider" min="10000" max="10000000" step="5000" value="100000" oninput="syncInputs('lumpsum')">
             <input type="number" id="lumpsum" min="10000" max="10000000" step="5000" value="100000" oninput="syncInputs('lumpsum', true)">
-        </div>
+        </div>   
+       
     </div>
 
     <div class="input-group">
@@ -86,7 +88,7 @@
         </div>
     </div>
 
-    <div class="result-box">
+    <div class="result-box ">
         <p>Total Withdrawn: <strong>₹<span id="total-withdrawn">0</span></strong></p>
         <p>Interest Earned: <strong>₹<span id="total-interest">0</span></strong></p>
         <p>Final Balance: <strong>₹<span id="final-balance">0</span></strong></p>
@@ -527,7 +529,22 @@ backToTopBtn.addEventListener("click", function () {
             }
             .bi-chevron-down:not(.collapsed) {
               transform: rotate(180deg); /* Up arrow */
+          }
+          
+          .slider-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+}
 
+          .slider-container input[type="range"] {
+           flex: 1; /* Takes remaining space */
+}
+
+.slider-container input[type="number"] {
+    width: 120px; /* Fixed width for number input */
+}
 
           </style>
 </body>
