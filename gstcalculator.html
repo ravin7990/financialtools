@@ -67,7 +67,7 @@
     </div>
 
     <!-- Total amount (₹) -->
-    <div class="input-group m">
+    <div class="input-group slider-container">
         <label for="amount">Total amount (₹)</label>
         <div class="slider-container">
             <input
@@ -80,7 +80,7 @@
                 oninput="syncInputs('amount')"
             />
             <input
-                style="width: 100%"
+               
                 type="number"
                 id="amount"
                 min="1"
@@ -107,11 +107,14 @@
 
     <!-- Results -->
 <div class="result-box">
-    <p>Total GST: <strong>₹<span id="totalGST">0</span></strong></p>
-    <p id="resultLabel">Post-GST Amount: 
-        <strong>₹<span id="postGST">0</span></strong>
-    </p>
- 
+    <div class="result-item">
+        <span class="label">Total GST:</span>
+        <span class="value"><strong>₹<span id="totalGST">0</span></strong></span>
+    </div>
+    <div class="result-item total-item">
+        <span class="label">Post-GST Amount:</span>
+        <span class="value"><strong>₹<span id="postGST">0</span></strong></span>
+    </div>
 </div>
     <button onclick="calculateGST()">Calculate</button>
 </div>
