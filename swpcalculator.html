@@ -179,47 +179,59 @@
      <div class="col-md-6" style="background-colorf:red;">
 
        <div class="container">
-               <div class="section">
-                   <h1>SIP Calculator – Systematic Investment Plan Calculator</h1>
-                   <p>Prospective investors can think that SIPs and mutual funds are the same. However, SIPs are merely a method of investing in mutual funds, the other method being a lump sum. A SIP calculator is a tool that helps you determine the returns you can avail when parking your funds in such investment tools.</p>
-               </div>
-
-               <div class="section">
-                   <h2>What is a SIP Calculator?</h2>
-                   <p>A SIP calculator is a simple tool that allows individuals to get an idea of the returns on their mutual fund investments made through SIP. SIP investments in mutual funds have become one of the most popular investment options for millennials lately.</p>
-               </div>
-
-               <div class="section">
-                   <h2>How can a SIP return calculator help you?</h2>
-                   <p>SIPs are a more lucrative mode of investing funds compared to a lump sum amount according to several mutual fund experts. It helps you become financially disciplined and create a habit of savings that can benefit you in the future.</p>
-               </div>
-
-               <div class="section">
-                   <h2>How do SIP calculators work?</h2>
-                   <p>A SIP plan calculator works on the following formula:</p>
-                   <p><strong>M = P × ({[1 + i]^n – 1} / i) × (1 + i)</strong></p>
-                   <p>Where:</p>
-                   <ul>
-                       <li><strong>M</strong> is the amount you receive upon maturity.</li>
-                       <li><strong>P</strong> is the amount you invest at regular intervals.</li>
-                       <li><strong>n</strong> is the number of payments you have made.</li>
-                       <li><strong>i</strong> is the periodic rate of interest.</li>
-                   </ul>
-               </div>
-
-               <div class="section">
-                   <h2>How to use Groww’s systematic investment plan calculator?</h2>
-                   <p>You can use the SIP amount calculator from Groww within a few clicks. Just enter the monthly invested amount, the number of years for which you want to stay invested, and the expected rate of return.</p>
-               </div>
-
-               <div class="section">
-                   <h2>Advantages of using Groww systematic investment plan calculator</h2>
-                   <ul>
-                       <li>Plan your investment based on the amount and tenure.</li>
-                       <li>Helps you compute an estimation of the total value of investments at the end of your SIP tenure.</li>
-                       <li>Shows accurate results and helps you save time required during a manual calculation.</li>
-                   </ul>
-               </div>
+              <div class="swp-calculator-content">
+    <div class="title">
+        <h1>SWP Calculator: Plan Your Withdrawals Smartly 💰📊</h1>
+    </div>
+    <div class="introduction">
+        <p>Investing is great, but what if you need a steady income from your investments? That’s where the SWP (Systematic Withdrawal Plan) Calculator comes in! It helps you figure out how much you can withdraw regularly while keeping your money invested and growing.</p>
+        <p>Whether you're planning for retirement, covering monthly expenses, or just looking for a steady cash flow, the SWP Calculator makes things super easy! Let’s dive in.</p>
+    </div>
+    <div class="what-is-swp-calculator">
+        <h2>What is an SWP Calculator?</h2>
+        <p>An SWP Calculator is a tool that helps you estimate how long your money will last based on:</p>
+        <ul>
+            <li>✔️ Your initial investment</li>
+            <li>✔️ The withdrawal amount</li>
+            <li>✔️ The expected return rate</li>
+            <li>✔️ The investment duration</li>
+        </ul>
+        <p>Instead of withdrawing all your money at once, SWP allows you to withdraw a fixed amount regularly while the remaining balance keeps earning returns. 📈</p>
+    </div>
+    <div class="how-swp-calculator-works">
+        <h2>How Does an SWP Calculator Work?</h2>
+        <p>The calculator gives you a clear picture of:</p>
+        <ul>
+            <li>✅ How much you can withdraw every month</li>
+            <li>✅ How long your investment will last</li>
+            <li>✅ The balance left after each withdrawal</li>
+        </ul>
+        <h3>How to Use It?</h3>
+        <ol>
+            <li>1️⃣ Enter your initial investment amount (e.g., ₹10,00,000).</li>
+            <li>2️⃣ Select the monthly withdrawal amount (e.g., ₹10,000).</li>
+            <li>3️⃣ Choose an expected return rate (e.g., 8% per year).</li>
+            <li>4️⃣ Select the withdrawal duration (e.g., 10 years).</li>
+            <li>5️⃣ Click Calculate, and see how your money flows!</li>
+        </ol>
+        <p>💡 Example:</p>
+        <p>If you invest ₹10,00,000 and withdraw ₹10,000 per month with an 8% annual return, your money could last for over 12 years, even after regular withdrawals!</p>
+    </div>
+    <div class="why-use-swp-calculator">
+        <h2>Why Use an SWP Calculator?</h2>
+        <ul>
+            <li>🔹 Ensures a Steady Income – Get a fixed amount every month.</li>
+            <li>🔹 Prevents Overspending – Know exactly how long your money will last.</li>
+            <li>🔹 Keeps Your Investment Growing – The remaining balance keeps earning returns.</li>
+            <li>🔹 Ideal for Retirement Planning – Convert your savings into a regular income stream.</li>
+        </ul>
+    </div>
+    <div class="call-to-action">
+        <h2>Plan Your Withdrawals Wisely!</h2>
+        <p>An SWP Calculator is the perfect tool to help you plan a stress-free financial future. Whether you need monthly income or want to withdraw smartly without depleting your savings too fast, this calculator helps you make the right choice.</p>
+        <p>Try it today and take control of your money! 🚀💸</p>
+    </div>
+</div>
            </div>
 
 
@@ -384,38 +396,64 @@
                   calculateSIP();
               }
           
-function calculateSIP() {
-    let principal = parseFloat(document.getElementById("lumpsum").value);
-    let annualRate = parseFloat(document.getElementById("rate").value) / 100;
-    let withdrawal = parseFloat(document.getElementById("withdrawal").value);
-    let years = parseInt(document.getElementById("years").value);
 
+function calculateSIP() {
+    // Parse input values from HTML elements
+    let principal = parseFloat(document.getElementById("lumpsum").value); // Initial investment
+    let annualRate = parseFloat(document.getElementById("rate").value) / 100; // Annual rate as decimal
+    let withdrawal = parseFloat(document.getElementById("withdrawal").value); // Monthly withdrawal
+    let years = parseInt(document.getElementById("years").value); // Duration in years
+
+    // Input validation
+    if (isNaN(principal) || isNaN(annualRate) || isNaN(withdrawal) || isNaN(years) ||
+        principal < 0 || annualRate < 0 || withdrawal < 0 || years < 0) {
+        alert("Please enter valid non-negative numbers for all fields.");
+        return;
+    }
+
+    // Handle zero duration or principal as a special case
+    if (years === 0 || principal === 0) {
+        document.getElementById("total-withdrawn").textContent = "₹0.00";
+        document.getElementById("total-interest").textContent = "₹0.00";
+        document.getElementById("final-balance").textContent = "₹0.00";
+        return;
+    }
+
+    // Calculate total months and monthly interest rate
     let months = years * 12;
-    let monthlyRate = annualRate / 12; // Convert annual rate to monthly rate
+    let monthlyRate = annualRate / 12; // Monthly interest rate
+
+    // Initialize variables
     let balance = principal;
     let totalWithdrawn = 0;
     let totalInterest = 0;
 
+    // Simulate SWP for each month
     for (let i = 0; i < months; i++) {
-        let monthlyInterest = balance * monthlyRate; // Calculate interest first
+        // Calculate interest for the month
+        let monthlyInterest = balance * monthlyRate;
         totalInterest += monthlyInterest;
         balance += monthlyInterest;
 
+        // Withdraw the specified amount
         if (balance >= withdrawal) {
             balance -= withdrawal;
             totalWithdrawn += withdrawal;
         } else {
-            totalWithdrawn += balance;
+            totalWithdrawn += balance; // Withdraw remaining balance
             balance = 0;
-            break;
+            break; // Stop if balance is exhausted
         }
     }
 
-    document.getElementById("total-withdrawn").textContent = totalWithdrawn.toFixed(0);
-    document.getElementById("total-interest").textContent = totalInterest.toFixed(0);
-    document.getElementById("final-balance").textContent = balance.toFixed(0);
-}
+    // Format numbers with rupee symbol, two decimal places, and commas
+    const formatNumber = (num) => "₹" + num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+    // Update UI with formatted values
+    document.getElementById("total-withdrawn").textContent = formatNumber(totalWithdrawn);
+    document.getElementById("total-interest").textContent = formatNumber(totalInterest);
+    document.getElementById("final-balance").textContent = formatNumber(balance);
+}
 
 
 

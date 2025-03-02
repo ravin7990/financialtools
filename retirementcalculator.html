@@ -352,44 +352,75 @@
        <div class="col-sm-0 " style="background-color:pink;">    </div>
       </div>
       <script>
-              function syncInputs(id, isManual = false) {
-                  const slider = document.getElementById(`${id}-slider`);
-                  const numberInput = document.getElementById(id);
-                  if (isManual) {
-                      slider.value = numberInput.value;
-                  } else {
-                      numberInput.value = slider.value;
-                  }
-                  calculateSIP();
-              }
-              function calculateSIP() {
-                  let P = parseFloat(document.getElementById("amount").value);
-                  let r = parseFloat(document.getElementById("rate").value) / 100 / 12;
-                  let n = parseInt(document.getElementById("years").value) * 12;
-                  let investedAmount = P * n;
-                  let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-                  let estReturns = futureValue - investedAmount;
-                  document.getElementById("invested").textContent = investedAmount.toFixed(2);
-                  document.getElementById("returns").textContent = estReturns.toFixed(2);
-                  document.getElementById("total").textContent = futureValue.toFixed(2);
-                  updateChart(investedAmount, estReturns);
-              }
-              let sipChart;
-              function updateChart(invested, returns) {
-                  let ctx = document.getElementById("sipChart").getContext("2d");
-                  if (sipChart) sipChart.destroy();
-                  sipChart = new Chart(ctx, {
-                      type: "doughnut",
-                      data: {
-                          labels: ["Invested Amount", "Est. Returns"],
-                          datasets: [{
-                              data: [invested, returns],
-                              backgroundColor: ["#4CAF50", "#2196F3"]
-                          }]
-                      }
-                  });
-              }
-              calculateSIP();
+          
+         function calculateRetirement() {
+    // Get input values
+    const currentAge = parseFloat(document.getElementById('currentAge').value);
+    const retirementAge = parseFloat(document.getElementById('retirementAge').value);
+    const lifeExpectancy = parseFloat(document.getElementById('lifeExpectancy').value);
+    const monthlyExpense = parseFloat(document.getElementById('monthlyExpense').value);
+    const inflationRate = parseFloat(document.getElementById('inflationRate').value)/100;
+    const investmentReturn = parseFloat(document.getElementById('investmentReturn').value)/100;
+    const existingSavings = parseFloat(document.getElementById('existingSavings').value);
+
+    // Calculate basic values
+    const yearsToRetirement = retirementAge - currentAge;
+    const yearsInRetirement = lifeExpectancy - retirementAge;
+
+    // Validate inputs
+    if (yearsToRetirement <= 0 || yearsInRetirement <= 0) {
+        document.getElementById('result').innerHTML = "Please enter valid ages";
+        return;
+    }
+
+    // Calculate annual expenses at retirement (future value)
+    const annualExpenseAtRetirement = monthlyExpense * 12 * 
+        Math.pow(1 + inflationRate, yearsToRetirement);
+
+    // Calculate real rate of return
+    const realRateOfReturn = (investmentReturn - inflationRate) / (1 + inflationRate);
+
+    // Calculate required corpus using present value of growing annuity
+    let corpus = 0;
+    if (realRateOfReturn <= 0) {
+        corpus = annualExpenseAtRetirement * yearsInRetirement;
+    } else {
+        corpus = annualExpenseAtRetirement * 
+            (1 - Math.pow(1 + inflationRate, yearsInRetirement) / 
+            Math.pow(1 + investmentReturn, yearsInRetirement)) / 
+            realRateOfReturn;
+    }
+
+    // Calculate future value of existing savings
+    const futureValueExisting = existingSavings * 
+        Math.pow(1 + investmentReturn, yearsToRetirement);
+
+    // Calculate required savings
+    let required = corpus - futureValueExisting;
+
+    // Handle results
+    let resultHTML;
+    if (required <= 0) {
+        resultHTML = `<p class="text-success">Your existing savings are sufficient!<br>
+            Projected Retirement Corpus: ₹${corpus.toLocaleString('en-IN', {maximumFractionDigits: 2})}</p>`;
+    } else {
+        // Calculate monthly savings required (future value of annuity)
+        const monthlyRate = investmentReturn / 12;
+        const months = yearsToRetirement * 12;
+        const monthlySavings = required / 
+            ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+
+        resultHTML = `
+            <h4 class="mb-3">Retirement Plan Results:</h4>
+            <p>Required Retirement Corpus: <b>₹${corpus.toLocaleString('en-IN', {maximumFractionDigits: 2})}</b></p>
+            <p>Future Value of Existing Savings: <b>₹${futureValueExisting.toLocaleString('en-IN', {maximumFractionDigits: 2})}</b></p>
+            <p class="text-danger">Monthly Savings Needed: <b>₹${monthlySavings.toLocaleString('en-IN', {maximumFractionDigits: 2})}</b></p>
+            <p class="text-muted">Note: Calculations assume constant returns and inflation rates.</p>
+        `;
+    }
+
+    document.getElementById('result').innerHTML = resultHTML;
+}
 
 
           // Get the button
@@ -410,46 +441,7 @@ backToTopBtn.addEventListener("click", function () {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 });
           
-          function calculateRetirement() {
-    let currentAge = parseInt(document.getElementById("currentAge").value);
-    let retirementAge = parseInt(document.getElementById("retirementAge").value);
-    let lifeExpectancy = parseInt(document.getElementById("lifeExpectancy").value);
-    let monthlyExpense = parseFloat(document.getElementById("monthlyExpense").value);
-    let inflationRate = parseFloat(document.getElementById("inflationRate").value) / 100;
-    let investmentReturn = parseFloat(document.getElementById("investmentReturn").value) / 100;
-    let existingSavings = parseFloat(document.getElementById("existingSavings").value);
-
-    let retirementType = document.querySelector('input[name="retirementType"]:checked').value;
-    let investmentType = document.querySelector('input[name="investmentType"]:checked').value;
-
-    let yearsToRetirement = retirementAge - currentAge;
-    let yearsAfterRetirement = lifeExpectancy - retirementAge;
-
-    // Updated multipliers for higher corpus values
-    let lifestyleMultiplier = retirementType === "king" ? 3 : retirementType === "monk" ? 1.5 : 2;
-    let futureMonthlyExpense = monthlyExpense * lifestyleMultiplier * Math.pow(1 + inflationRate, yearsToRetirement);
-    let annualExpense = futureMonthlyExpense * 12;
-
-    // Adjust returns based on investment type
-    let adjustedInvestmentReturn = investmentType === "aggressive" ? investmentReturn + 0.02 : investmentReturn;
-
-    // Calculate the required corpus using annuity formula
-    let retirementCorpus = (annualExpense * (1 - Math.pow(1 + adjustedInvestmentReturn, -yearsAfterRetirement))) / adjustedInvestmentReturn;
-
-    // Increase corpus to ensure 2x-3x realistic values
-    let enhancedCorpus = retirementCorpus * lifestyleMultiplier;
-
-    let requiredCorpus = Math.max(enhancedCorpus - existingSavings, 0);
-    
-    let monthsToSave = yearsToRetirement * 12;
-    let monthlySavings = requiredCorpus / ((Math.pow(1 + adjustedInvestmentReturn / 12, monthsToSave) - 1) / (adjustedInvestmentReturn / 12));
-
-    document.getElementById("result").innerHTML = `
-        <b>Required Retirement Corpus:</b> ₹${Math.round(enhancedCorpus).toLocaleString()}<br>
-        <b>Monthly Savings Needed:</b> ₹${Math.round(monthlySavings).toLocaleString()}
-    `;
-    document.getElementById("result").style.display = "block";
-}
+     
           </script>
 
       <style>

@@ -373,20 +373,28 @@
                   }
                   calculateSIP();
               }
-             function calculateSIP() {
-    let P = parseFloat(document.getElementById("amount").value); // Principal Amount
-    let r = parseFloat(document.getElementById("rate").value);   // Annual Interest Rate
-    let t = parseInt(document.getElementById("years").value);    // Tenure in Years
+          function calculateSIP() { // Renamed from calculateSIP for clarity
+    const P = parseFloat(document.getElementById("amount").value); // Principal
+    const annualRate = parseFloat(document.getElementById("rate").value); // Annual rate
+    const t = parseInt(document.getElementById("years").value); // Years
+    
+    // FD Formula with quarterly compounding (common in India):
+    // M = P × (1 + r/(4×100))^(n×4)
+    // Where:
+    // r = annual interest rate
+    // n = number of years
+    // 4 = quarterly compounding
+    
+    const quarterlyRate = annualRate / 4;
+    const totalQuarters = t * 4;
+    const maturityAmount = P * Math.pow(1 + quarterlyRate/100, totalQuarters);
+    const interestEarned = maturityAmount - P;
 
-    // Correct Compound Interest FD Formula: M = P + P {(1 + r/100)^t - 1}
-    let maturityAmount = P + P * (Math.pow((1 + r / 100), t) - 1);
-    let interestEarned = maturityAmount - P;
-
-    // Updating the UI with calculated values
+    // Update UI
     document.getElementById("invested").textContent = P.toFixed(2);
     document.getElementById("returns").textContent = interestEarned.toFixed(2);
     document.getElementById("total").textContent = maturityAmount.toFixed(2);
-
+    
     updateChart(P, interestEarned);
 }
               let sipChart;

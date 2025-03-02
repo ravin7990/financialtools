@@ -174,47 +174,55 @@
      <div class="col-md-6" style="background-colorf:red;">
 
        <div class="container">
-               <div class="section">
-                   <h1>SIP Calculator – Systematic Investment Plan Calculator</h1>
-                   <p>Prospective investors can think that SIPs and mutual funds are the same. However, SIPs are merely a method of investing in mutual funds, the other method being a lump sum. A SIP calculator is a tool that helps you determine the returns you can avail when parking your funds in such investment tools.</p>
-               </div>
-
-               <div class="section">
-                   <h2>What is a SIP Calculator?</h2>
-                   <p>A SIP calculator is a simple tool that allows individuals to get an idea of the returns on their mutual fund investments made through SIP. SIP investments in mutual funds have become one of the most popular investment options for millennials lately.</p>
-               </div>
-
-               <div class="section">
-                   <h2>How can a SIP return calculator help you?</h2>
-                   <p>SIPs are a more lucrative mode of investing funds compared to a lump sum amount according to several mutual fund experts. It helps you become financially disciplined and create a habit of savings that can benefit you in the future.</p>
-               </div>
-
-               <div class="section">
-                   <h2>How do SIP calculators work?</h2>
-                   <p>A SIP plan calculator works on the following formula:</p>
-                   <p><strong>M = P × ({[1 + i]^n – 1} / i) × (1 + i)</strong></p>
-                   <p>Where:</p>
-                   <ul>
-                       <li><strong>M</strong> is the amount you receive upon maturity.</li>
-                       <li><strong>P</strong> is the amount you invest at regular intervals.</li>
-                       <li><strong>n</strong> is the number of payments you have made.</li>
-                       <li><strong>i</strong> is the periodic rate of interest.</li>
-                   </ul>
-               </div>
-
-               <div class="section">
-                   <h2>How to use Groww’s systematic investment plan calculator?</h2>
-                   <p>You can use the SIP amount calculator from Groww within a few clicks. Just enter the monthly invested amount, the number of years for which you want to stay invested, and the expected rate of return.</p>
-               </div>
-
-               <div class="section">
-                   <h2>Advantages of using Groww systematic investment plan calculator</h2>
-                   <ul>
-                       <li>Plan your investment based on the amount and tenure.</li>
-                       <li>Helps you compute an estimation of the total value of investments at the end of your SIP tenure.</li>
-                       <li>Shows accurate results and helps you save time required during a manual calculation.</li>
-                   </ul>
-               </div>
+               <div class="epf-calculator-content">
+    <div class="title">
+        <h1>EPF Calculator: Know Your Retirement Savings! 💰📊</h1>
+    </div>
+    <div class="introduction">
+        <p>If you’re a salaried employee in India, your Employees’ Provident Fund (EPF) is one of the most secure ways to save for retirement. But do you know how much wealth you’re actually building over the years? That’s where an EPF Calculator helps!</p>
+        <p>This simple tool gives you a clear picture of how much money you’ll accumulate in your EPF account based on your monthly contributions and interest. Let’s break it down!</p>
+    </div>
+    <div class="what-is-epf-calculator">
+        <h2>What is an EPF Calculator?</h2>
+        <p>An EPF Calculator helps employees estimate their total EPF balance at the time of retirement. It considers:</p>
+        <ul>
+            <li>✔️ Your monthly EPF contributions</li>
+            <li>✔️ Your employer’s contribution</li>
+            <li>✔️ The current interest rate</li>
+            <li>✔️ The number of years you’ll be investing</li>
+        </ul>
+        <p>With just a few inputs, you can see how much you’ll have in your EPF account when you retire!</p>
+    </div>
+    <div class="how-epf-calculator-works">
+        <h2>How Does an EPF Calculator Work?</h2>
+        <p>When you and your employer contribute a portion of your salary every month to EPF, that amount earns interest and keeps growing. The EPF Calculator shows you the exact amount you’ll have when you retire.</p>
+        <h3>How to Use It?</h3>
+        <ol>
+            <li>1️⃣ Enter your basic monthly salary + DA (e.g., ₹30,000).</li>
+            <li>2️⃣ Enter your employee contribution (typically 12% of salary).</li>
+            <li>3️⃣ Enter your employer contribution (usually 8.33% to EPS & the rest to EPF).</li>
+            <li>4️⃣ Choose the current EPF interest rate (e.g., 8.15% per year).</li>
+            <li>5️⃣ Select the number of years till retirement (e.g., 30 years).</li>
+            <li>6️⃣ Click Calculate and see your final retirement fund!</li>
+        </ol>
+        <p>💡 Example:</p>
+        <p>If your basic salary + DA is ₹30,000 and you contribute 12% of it every month, along with your employer’s contribution, and the interest rate remains 8.15%, you could have over ₹1 crore in your EPF account by the time you retire! 🚀</p>
+    </div>
+    <div class="why-use-epf-calculator">
+        <h2>Why Use an EPF Calculator?</h2>
+        <ul>
+            <li>🔹 Get a Clear Retirement Estimate – Know how much you’ll have in your EPF account.</li>
+            <li>🔹 Plan Your Future Better – Adjust your savings if needed.</li>
+            <li>🔹 See the Power of Compounding – Watch how your savings grow over time.</li>
+            <li>🔹 Helps in Financial Decisions – Plan for home buying, education, or early retirement.</li>
+        </ul>
+    </div>
+    <div class="call-to-action">
+        <h2>Start Planning for a Secure Future!</h2>
+        <p>Your EPF savings are a big part of your retirement plan. Using an EPF Calculator, you can estimate your final savings and plan accordingly.</p>
+        <p>Take charge of your financial future today and see how much wealth you’re building! 💸🔢</p>
+    </div>
+</div>
            </div>
 
 
@@ -379,35 +387,51 @@
                   calculateSIP();
               }
 function calculateSIP() {
-    let salary = parseFloat(document.getElementById("salary").value); // Monthly Salary
+    // Retrieve input values from HTML
+    let salary = parseFloat(document.getElementById("salary").value); // Monthly Salary (Basic + DA)
     let age = parseInt(document.getElementById("age").value); // Current Age
-    let contributionRate = parseFloat(document.getElementById("contribution").value) / 100; // EPF Contribution %
+    let contributionRate = parseFloat(document.getElementById("contribution").value) / 100; // Employee's EPF Contribution %
     let incrementRate = parseFloat(document.getElementById("increment").value) / 100; // Annual Salary Increase %
     let annualInterestRate = parseFloat(document.getElementById("rate").value) / 100; // Annual Interest Rate
 
+    // Fixed parameters
     let retirementAge = 60;
     let yearsRemaining = retirementAge - age;
     let totalEPF = 0;
     let currentSalary = salary;
-    let monthlyInterestRate = annualInterestRate / 12;
+    let monthlyInterestRate = annualInterestRate / 12; // e.g., 8.25% / 12 = 0.006875
 
-    let monthlyContribution = currentSalary * contributionRate * 2; // Employee + Employer contribution
+    // Flag to skip interest for the first month
+    let isFirstMonth = true;
 
+    // Loop through each year until retirement
     for (let year = 1; year <= yearsRemaining; year++) {
-        for (let month = 1; month <= 12; month++) {
-            totalEPF += monthlyContribution; // Add contribution
-            totalEPF *= (1 + monthlyInterestRate); // Apply monthly compounding
+        // Apply salary increment at the start of each new year (after year 1)
+        if (year > 1) {
+            currentSalary *= (1 + incrementRate);
         }
 
-        // Apply salary increment at the start of each new year
-        currentSalary *= (1 + incrementRate);
-        monthlyContribution = currentSalary * contributionRate * 2; // Update contribution based on new salary
+        // Loop through each month in the year
+        for (let month = 1; month <= 12; month++) {
+            // Calculate contributions
+            let employeeContribution = currentSalary * contributionRate; // Employee’s variable contribution
+            let employerEPFContribution = currentSalary * 0.0367; // Employer’s fixed 3.67% to EPF
+            let totalContribution = employeeContribution + employerEPFContribution;
+
+            // Add contribution to total EPF
+            totalEPF += totalContribution;
+
+            // Apply interest monthly, except for the first month
+            if (!isFirstMonth) {
+                totalEPF *= (1 + monthlyInterestRate);
+            }
+            // After the first month, interest applies normally
+            isFirstMonth = false;
+        }
     }
 
-    // Final EPF Amount - Rounded to match exact screenshot format
+    // Round the final amount and format for display
     let finalAmount = Math.round(totalEPF);
-
-    // Update HTML output
     document.getElementById("total").textContent = finalAmount.toLocaleString('en-IN');
 }
 

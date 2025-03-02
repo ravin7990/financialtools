@@ -25,17 +25,17 @@
   <div class="d-flex align-items-center navbar-brand">
     <img src="logo.png" alt="Logo" class="mr-2" style="width:50px;height:50px;">
     <h6 class="text-white mb-0">FinancialTools.com</h6>
-  </div>   
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>     
+  </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item px-2">
         <a class="nav-link" href="index.html">Home</a>
       </li>
       <li class="nav-item px-2">
-        <a class="nav-link" href="Aboutus.html">About Us</a>
+        <a class="nav-link" href="aboutus.html">About Us</a>
       </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="privacypolicy.html">Privacy Policy</a>
@@ -44,18 +44,18 @@
   </div>
 </nav>
 
-    
 
 
   <!-- //first row first column -->
   <div  class="row">
   <!--   //first row first column -->
-    <div class="col-md-6" style="background-colorf:yellow;">
-      <div class="container mt-5 table1">
+    <div class="col-md-6" style="background-color:yellovw;">
+    <div class="container mt-5 table1">
 
-       <h2>Mutual Fund Return Calculator</h2>
+       <h2>Mutual Fund Calculator</h2>
 
-        
+         <div class="container">
+  
        <div class="input-group m">
            <label for="amount">Total Investment (₹)</label>
            <div class="slider-container">
@@ -77,7 +77,7 @@
                <input type="number" id="years" min="1" max="30" step="1" value="10" oninput="syncInputs('years', true)">
            </div>
        </div>
-      <div class="result-box">
+       <div class="result-box">
     <div class="result-item">
         <span class="label">Invested Amount:</span>
         <span class="value"><strong>₹<span id="invested">0</span></strong></span>
@@ -97,13 +97,14 @@
        <button onclick="calculateSIP()">Invest Now</button>
      </div>
   </div>
+      </div>        
   <!--   //first row second column -->
-    <div class="col-md-6" style="background-colorf:orange;">
-      <div class="container mt-5 ">
+    <div class="col-md-6" style="background-color:orangve;">
+    <div class="container mt-5 table1">
 
         <div class=".container-fluid mt-sm-5 mb-sm-5">
         <div class="card bg-primary text-white">
-        <div class="card-body " >  <af href="sipcalculator.html">SIP Calculator</af> </div>
+        <div class="card-body">SIP Calculator</div>
       </div>
       <br>
       <div class="card bg-success text-white">
@@ -159,64 +160,105 @@
       </div>
       </div>
 
+    </div>
 
-
-      </div>
+ 
 
   <!--  /second row -->
-   <div  class="row mb-05">
+   <div  class="row">
   <!--    //second row first column -->
-     <div class="col-md-6" style="background-colorf:red;">
-
+     <div class="col-md-6" style="background-color:redd;">
        <div class="container">
-               <div class="section">
-                   <h1>SIP Calculator – Systematic Investment Plan Calculator</h1>
-                   <p>Prospective investors can think that SIPs and mutual funds are the same. However, SIPs are merely a method of investing in mutual funds, the other method being a lump sum. A SIP calculator is a tool that helps you determine the returns you can avail when parking your funds in such investment tools.</p>
-               </div>
+        <div class="mutual-fund-calculator-content">
+    <div class="title">
+        <h1>Mutual Fund Calculator – Your Guide to Smarter Investing</h1>
+    </div>
+    <div class="introduction">
+        <p>Investing in mutual funds is one of the best ways to grow your wealth, but have you ever wondered how much your investments will be worth in the future? Whether you invest through lumpsum or SIP (Systematic Investment Plan), knowing your potential returns can help you make better financial decisions.</p>
+        <p>That’s where a Mutual Fund Calculator comes in! This simple tool helps you estimate your future returns, so you can plan your investments wisely.</p>
+        <p>Let’s dive in!</p>
+    </div>
+    <div class="what-is-mutual-fund-calculator">
+        <h2>What is a Mutual Fund Calculator?</h2>
+        <p>A Mutual Fund Calculator is an online tool that helps investors estimate how much their mutual fund investments will grow over time. It works for both:</p>
+        <ul>
+            <li>✔️ SIP investments – When you invest a fixed amount every month.</li>
+            <li>✔️ Lumpsum investments – When you invest a big amount at once.</li>
+        </ul>
+        <p>By entering a few basic details, you can see how much wealth you can create over time.</p>
+    </div>
+    <div class="benefits-of-mutual-fund-calculator">
+        <h2>How Can a Mutual Fund Calculator Help You?</h2>
+        <p>A Mutual Fund Calculator helps you make informed decisions by:</p>
+        <ul>
+            <li>✅ Estimating future returns – Know how much your investment could be worth.</li>
+            <li>✅ Saving time – No need for complicated manual calculations.</li>
+            <li>✅ Helping with goal-based investing – Plan for a house, a car, or retirement.</li>
+            <li>✅ Comparing different investments – Check different returns by adjusting the SIP amount, duration, and expected rate of return.</li>
+        </ul>
+    </div>
+    <div class="how-mutual-fund-calculator-works">
+        <h2>How Does a Mutual Fund Calculator Work?</h2>
+        <p>A Mutual Fund Calculator works using two main formulas, depending on whether you’re investing through SIP or Lumpsum.</p>
+        <div class="sip-calculation">
+            <h3>1️⃣ SIP Calculation Formula:</h3>
+            <p><code>FV = P × ((1 + r)^n - 1) / r × (1 + r)</code></p>
+            <p>Where:</p>
+            <ul>
+                <li>P = Monthly SIP amount</li>
+                <li>r = Monthly return rate (Annual return ÷ 12)</li>
+                <li>n = Number of months</li>
+                <li>FV = Future value of your investment</li>
+            </ul>
+            <p>Example:</p>
+            <p>If you invest ₹5,000 per month in an SIP for 10 years, assuming a 12% annual return, you’ll get:</p>
+            <ul>
+                <li>💰 Total Investment = ₹6,00,000</li>
+                <li>📈 Estimated Returns = ₹11,61,695</li>
+                <li>🎉 Final Corpus = ₹17,61,695</li>
+            </ul>
+        </div>
+        <div class="lumpsum-calculation">
+            <h3>2️⃣ Lumpsum Calculation Formula:</h3>
+            <p><code>FV = P × (1 + r)^n</code></p>
+            <p>Where:</p>
+            <ul>
+                <li>P = Initial investment</li>
+                <li>r = Annual return rate</li>
+                <li>n = Investment duration (in years)</li>
+            </ul>
+            <p>Example:</p>
+            <p>If you invest ₹2,00,000 as a one-time lumpsum for 10 years at 12% annual return, you’ll get:</p>
+            <ul>
+                <li>💰 Final Corpus = ₹6,21,000</li>
+            </ul>
+            <p>That’s more than 3x growth in 10 years!</p>
+        </div>
+    </div>
+    <div class="how-to-use-mutual-fund-calculator">
+        <h2>How to Use a Mutual Fund Calculator?</h2>
+        <p>It’s super easy:</p>
+        <ol>
+            <li>1️⃣ Choose the investment type – SIP or Lumpsum.</li>
+            <li>2️⃣ Enter the investment amount – Monthly SIP or Lumpsum.</li>
+            <li>3️⃣ Select the investment duration – Number of years you want to stay invested.</li>
+            <li>4️⃣ Enter the expected return rate – Historical mutual fund returns range between 10-15%.</li>
+            <li>5️⃣ Click ‘Calculate’ – and get your estimated wealth in seconds!</li>
+        </ol>
+    </div>
+    <div class="final-thoughts">
+        <h2>Final Thoughts</h2>
+        <p>A Mutual Fund Calculator is an essential tool for smart investors. It helps you plan your finances better, track potential growth, and make confident investment decisions.</p>
+        <p>🚀 Want to see how much your money can grow? Try a Mutual Fund Calculator today!</p>
+        <p>💡 What’s your investment goal? Let us know in the comments! 👇</p>
+    </div>
+</div>      
 
-               <div class="section">
-                   <h2>What is a SIP Calculator?</h2>
-                   <p>A SIP calculator is a simple tool that allows individuals to get an idea of the returns on their mutual fund investments made through SIP. SIP investments in mutual funds have become one of the most popular investment options for millennials lately.</p>
-               </div>
-
-               <div class="section">
-                   <h2>How can a SIP return calculator help you?</h2>
-                   <p>SIPs are a more lucrative mode of investing funds compared to a lump sum amount according to several mutual fund experts. It helps you become financially disciplined and create a habit of savings that can benefit you in the future.</p>
-               </div>
-
-               <div class="section">
-                   <h2>How do SIP calculators work?</h2>
-                   <p>A SIP plan calculator works on the following formula:</p>
-                   <p><strong>M = P × ({[1 + i]^n – 1} / i) × (1 + i)</strong></p>
-                   <p>Where:</p>
-                   <ul>
-                       <li><strong>M</strong> is the amount you receive upon maturity.</li>
-                       <li><strong>P</strong> is the amount you invest at regular intervals.</li>
-                       <li><strong>n</strong> is the number of payments you have made.</li>
-                       <li><strong>i</strong> is the periodic rate of interest.</li>
-                   </ul>
-               </div>
-
-               <div class="section">
-                   <h2>How to use Groww’s systematic investment plan calculator?</h2>
-                   <p>You can use the SIP amount calculator from Groww within a few clicks. Just enter the monthly invested amount, the number of years for which you want to stay invested, and the expected rate of return.</p>
-               </div>
-
-               <div class="section">
-                   <h2>Advantages of using Groww systematic investment plan calculator</h2>
-                   <ul>
-                       <li>Plan your investment based on the amount and tenure.</li>
-                       <li>Helps you compute an estimation of the total value of investments at the end of your SIP tenure.</li>
-                       <li>Shows accurate results and helps you save time required during a manual calculation.</li>
-                   </ul>
-               </div>
+              
            </div>
-
-
-
        </div>
   <!--   //second row second column -->
-     <div class="col-md-6" style="background-color:blueg;">
+     <div class="col-md-6" style="background-color:bluce;">
  <div class="container mt-5 mb-5 ">
 
    <h2 class="mb-4">FAQs</h2>
@@ -373,18 +415,33 @@
                   }
                   calculateSIP();
               }
-              function calculateSIP() {
-                  let P = parseFloat(document.getElementById("amount").value);
-                  let r = parseFloat(document.getElementById("rate").value) / 100 / 12;
-                  let n = parseInt(document.getElementById("years").value) * 12;
-                  let investedAmount = P * n;
-                  let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-                  let estReturns = futureValue - investedAmount;
-                  document.getElementById("invested").textContent = investedAmount.toFixed(2);
-                  document.getElementById("returns").textContent = estReturns.toFixed(2);
-                  document.getElementById("total").textContent = futureValue.toFixed(2);
-                  updateChart(investedAmount, estReturns);
-              }
+          function calculateSIP() {
+    // Get input values     A = P (1 + r/n) ^ nt
+
+
+    let P = parseFloat(document.getElementById("amount").value); // Principal (initial investment)
+    let r = parseFloat(document.getElementById("rate").value) / 100; // Annual interest rate (converted to decimal)
+    let t = parseInt(document.getElementById("years").value); // Time in years
+    let n = 1; // Number of times interest is compounded per year (monthly compounding)
+
+    // Calculate future value using the formula A = P * (1 + r/n)^(nt)
+  let A = P * Math.pow(1 + r / n, n * t);
+//      let A = P *   * Math.pow(1 + r / n, n * t);
+
+    // Calculate invested amount and estimated returns
+    let investedAmount = P; // Total invested amount
+    let estReturns = A - P; // Estimated returns (future value - principal)
+
+    // Display results
+    document.getElementById("invested").textContent = investedAmount.toFixed(2);
+    document.getElementById("returns").textContent = estReturns.toFixed(2);
+    document.getElementById("total").textContent = A.toFixed(2);
+
+    // Update chart (if needed)
+    updateChart(investedAmount, estReturns);
+}
+          
+          
               let sipChart;
               function updateChart(invested, returns) {
                   let ctx = document.getElementById("sipChart").getContext("2d");
