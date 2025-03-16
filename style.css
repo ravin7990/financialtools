@@ -7,10 +7,10 @@ body {
 }
 
 a {
-
-
-color: white:
+    color:#112D4E; /* Change this to your desired color */
 }
+
+
 .table1 {
   background-color: #DBE2EF;
 }
@@ -115,4 +115,11 @@ border-radius: 30px;
     margin-top: 10px;
     border-top: 1px solid #eee;
     padding-top: 15px;
+}
+
+/* Remove default bullets/numbers and spacing */
+ul, ol, li {
+  list-style: none;   /* Removes bullet points/numbers */
+  margin: 0;          /* Removes default margins */
+  padding: 0;         /* Removes default padding */
 }

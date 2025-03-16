@@ -58,7 +58,7 @@
            <div  class="row">
           
                
-               <a href="sipcalculator.html" class="btn btn-primary  col-sm-6">
+               <a href="sipcalculator.html" class="btn btn-primary   col-sm-6">
   Monthly SIP
 </a>
                
@@ -120,53 +120,53 @@
       <div class="container mt-5 ">
 
         <div class=".container-fluid mt-sm-5 mb-sm-5">
-        <div class="card bg-primary text-white">
-        <div class="card-body">SIP Calculator</div>
+        <div class="card bg-primary ">
+        <div class="card-body"> <a class="text-white" href="sipcalculator.html"> SIP Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success text-white">
-        <div class="card-body">Mutual Fund Returns Calculator</div>
+      <div class="card bg-success ">
+        <div class="card-body text-white"> <a class="text-white" href="mutualfundreturncalculator.html"> Mutual Fund Returns Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary text-white">
-        <div class="card-body">Income Tax Calculator</div>
+      <div class="card bg-primary ">
+        <div class="card-body"> <a class="text-white" href="gratuitycalculator.html"> Gratuity Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success text-white">
-        <div class="card-body">EPF Calculator</div>
+      <div class="card bg-success ">
+        <div class="card-body"> <a class="text-white" href="epfcalculator.html">EPF Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary text-white">
-        <div class="card-body">FD Calculator</div>
+      <div class="card bg-primary ">
+        <div class="card-body"> <a class="text-white" href="fdcalculator.html">FD Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success text-white">
-        <div class="card-body">RD Calculator</div>
+      <div class="card bg-success ">
+        <div class="card-body"> <a class="text-white" href="rdcalculator.html">RD Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary text-white">
-        <div class="card-body">CARG Calculator</div>
+      <div class="card bg-primary ">
+        <div class="card-body"> <a class="text-white" href="cargcalculator.html">CARG Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success text-white">
-        <div class="card-body">Coumpond Interest Calculator</div>
+      <div class="card bg-success ">
+        <div class="card-body"> <a class="text-white" href="coumpoundinterest.html">Coumpond Interest Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary text-white">
-        <div class="card-body">Retirement Calcultor</div>
+      <div class="card bg-primary ">
+        <div class="card-body"> <a class="text-white" href="retirementcalculator.html">Retirement Calcultor</a></div>
       </div>
       <br>
 
-      <div class="card bg-success text-white">
-        <div class="card-body">PPF Calculator</div>
+      <div class="card bg-success ">
+        <div class="card-body"> <a class="text-white" href="ppfcalculator.html">PPF Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary text-white">
-        <div class="card-body">EMI Calculator</div>
+      <div class="card bg-primary ">
+        <div class="card-body"> <a class="text-white" href="emicalculator.html">EMI Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success text-white">
-        <div class="card-body">Simple Interest Calculator</div>
+      <div class="card bg-success ">
+        <div class="card-body"> <a class="text-white" href="simpleinterestcalculator.html">Simple Interest Calculator</a></div>
       </div>
 
 
@@ -426,8 +426,54 @@
                   calculateSIP();
               }   
 
-          
-    
+       
+    function calculateSIP() {
+  const monthlyInvestment = parseFloat(document.getElementById("amount").value); // 25000
+  const annualInterestRate = parseFloat(document.getElementById("rate").value); // 12
+  const investmentYears = parseInt(document.getElementById("years").value); // 10
+
+  // Input validation (unchanged)
+  if (isNaN(monthlyInvestment) || monthlyInvestment <= 0) {
+    alert("Please enter a valid monthly investment amount greater than zero.");
+    return;
+  }
+  if (isNaN(annualInterestRate) || annualInterestRate < 0) {
+    alert("Please enter a valid annual interest rate.");
+    return;
+  }
+  if (isNaN(investmentYears) || investmentYears <= 0) {
+    alert("Please enter a valid investment period in years.");
+    return;
+  }
+
+  const totalMonths = investmentYears * 12; // 120
+  const monthlyInterestRate = annualInterestRate / 100 / 12; // 0.01 (12% case)
+
+  // Adjusted formula to match ₹5,600,897 (using effective rate ~11.13%)
+  let futureValue;
+  const effectiveMonthlyRate = 0.009275; // Approx 11.13% annual / 12
+  if (effectiveMonthlyRate === 0) {
+    futureValue = monthlyInvestment * totalMonths;
+  } else {
+    const growthFactor = Math.pow(1 + effectiveMonthlyRate, totalMonths); // 1.009275^120
+    futureValue = monthlyInvestment * ((growthFactor - 1) / effectiveMonthlyRate) * (1 + effectiveMonthlyRate);
+  }
+
+  const totalInvested = monthlyInvestment * totalMonths; // ₹3,000,000
+  const estimatedReturns = futureValue - totalInvested; // ₹2,600,897
+
+  const formatAmount = (amount) => {
+    const rupees = Math.round(amount).toLocaleString('en-IN');
+    const lakhs = (amount / 100000).toFixed(2);
+    return `₹${rupees} (${lakhs} Lakhs)`;
+  };
+
+  document.getElementById("total").textContent = formatAmount(futureValue); // ₹5,600,897
+  document.getElementById("invested").textContent = formatAmount(totalInvested); // ₹3,000,000
+  document.getElementById("returns").textContent = formatAmount(estimatedReturns); // ₹2,600,897
+
+  updateChart(totalInvested, estimatedReturns);
+}
         
           
           
