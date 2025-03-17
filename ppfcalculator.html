@@ -107,7 +107,7 @@
        <div class="chart-container">
            <canvas id="sipChart"></canvas>
        </div>
-       <button onclick="calculateSIP()">Invest Now</button>
+    
      </div>
   </div>
   <!--   //first row second column -->
@@ -426,9 +426,30 @@
                   } else {
                       numberInput.value = slider.value;
                   }
+                  
+                  
                   calculateSIP();
               }
+          
+   function formatNumberInIndianFormat(num) {
+    // Convert the number to a string and split into whole and decimal parts
+    let parts = num.toString().split(".");
+    let wholePart = parts[0];
+    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+    // Add commas in Indian numbering system format
+    let lastThree = wholePart.slice(-3);
+    let otherNumbers = wholePart.slice(0, -3);
+    if (otherNumbers !== "") {
+        lastThree = "," + lastThree;
+    }
+    let result = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + decimalPart;
+
+    return result;
+}       
+          
 function calculateSIP() {
+    // Get input values
     let P = parseFloat(document.getElementById("amount").value); // Yearly Investment
     let annualRate = parseFloat(document.getElementById("rate").value); // Annual Interest Rate
     let n = parseInt(document.getElementById("years").value); // Time Period in Years
@@ -443,14 +464,19 @@ function calculateSIP() {
             maturityValue += P; // Add yearly investment
             maturityValue *= (1 + i); // Apply annual compounding
         }
-        
+
         let investedAmount = P * n; // Total Invested Amount
         let interestEarned = maturityValue - investedAmount; // Total Interest Earned
 
+        // Format the numbers in Indian format
+        let formattedInvestedAmount = formatNumberInIndianFormat(investedAmount.toFixed(2));
+        let formattedInterestEarned = formatNumberInIndianFormat(interestEarned.toFixed(2));
+        let formattedMaturityValue = formatNumberInIndianFormat(maturityValue.toFixed(2));
+
         // Update values in HTML
-        document.getElementById("invested").textContent = investedAmount.toFixed(2);
-        document.getElementById("returns").textContent = interestEarned.toFixed(2);
-        document.getElementById("total").textContent = maturityValue.toFixed(2);
+        document.getElementById("invested").textContent = formattedInvestedAmount;
+        document.getElementById("returns").textContent = formattedInterestEarned;
+        document.getElementById("total").textContent = formattedMaturityValue;
 
         // Update the PPF Chart
         updateChart(investedAmount, interestEarned);
@@ -464,9 +490,6 @@ function calculateSIP() {
         updateChart(0, 0);
     }
 }
-
-
-
 
 
 

@@ -93,7 +93,7 @@
        <div class="chart-container">
            <canvas id="sipChart"></canvas>
        </div>
-       <button onclick="calculateSIP()">Invest Now</button>
+      
      </div>
   </div>
   <!--   //first row second column -->
@@ -433,27 +433,49 @@
                   }
                   calculateSIP();
               }
-          function calculateSIP() {
-    // Get input values     A = P (1 + r/n) ^ nt
+          
+    function formatNumberInIndianFormat(num) {
+    // Convert the number to a string and split into whole and decimal parts
+    let parts = num.toString().split(".");
+    let wholePart = parts[0];
+    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
 
+    // Add commas in Indian numbering system format
+    let lastThree = wholePart.slice(-3);
+    let otherNumbers = wholePart.slice(0, -3);
+    if (otherNumbers !== "") {
+        lastThree = "," + lastThree;
+    }
+    let result = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + decimalPart;
 
+    return result;
+}
+          
+          
+          
+        function calculateSIP() {
+    // Get input values
     let P = parseFloat(document.getElementById("amount").value); // Principal (initial investment)
     let r = parseFloat(document.getElementById("rate").value) / 100; // Annual interest rate (converted to decimal)
     let t = parseInt(document.getElementById("years").value); // Time in years
     let n = 1; // Number of times interest is compounded per year (monthly compounding)
 
     // Calculate future value using the formula A = P * (1 + r/n)^(nt)
-  let A = P * Math.pow(1 + r / n, n * t);
-//      let A = P *   * Math.pow(1 + r / n, n * t);
+    let A = P * Math.pow(1 + r / n, n * t);
 
     // Calculate invested amount and estimated returns
     let investedAmount = P; // Total invested amount
     let estReturns = A - P; // Estimated returns (future value - principal)
 
+    // Format the numbers in Indian format
+    let formattedInvestedAmount = formatNumberInIndianFormat(investedAmount.toFixed(2));
+    let formattedEstReturns = formatNumberInIndianFormat(estReturns.toFixed(2));
+    let formattedTotal = formatNumberInIndianFormat(A.toFixed(2));
+
     // Display results
-    document.getElementById("invested").textContent = investedAmount.toFixed(2);
-    document.getElementById("returns").textContent = estReturns.toFixed(2);
-    document.getElementById("total").textContent = A.toFixed(2);
+    document.getElementById("invested").textContent = formattedInvestedAmount;
+    document.getElementById("returns").textContent = formattedEstReturns;
+    document.getElementById("total").textContent = formattedTotal;
 
     // Update chart (if needed)
     updateChart(investedAmount, estReturns);

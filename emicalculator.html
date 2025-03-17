@@ -98,7 +98,7 @@
        <div class="chart-container">
            <canvas id="sipChart"></canvas>
        </div>
-       <button onclick="calculateSIP()">Invest Now</button>
+     
      </div>
   </div>
   <!--   //first row second column -->
@@ -423,33 +423,62 @@
                   }
                   calculateSIP();
               }
+ 
+function formatNumberInIndianFormat(num) {
+    // Convert the number to a string and split into whole and decimal parts
+    let parts = num.toString().split(".");
+    let wholePart = parts[0];
+    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+    // Add commas in Indian numbering system format
+    let lastThree = wholePart.slice(-3);
+    let otherNumbers = wholePart.slice(0, -3);
+    if (otherNumbers !== "") {
+        lastThree = "," + lastThree;
+    }
+    let result = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + decimalPart;
+
+    return result;
+}
+          
           
  function calculateSIP() {
-    let P = parseFloat(document.getElementById("amount").value);
-    let annualRate = parseFloat(document.getElementById("rate").value);
+    // Get input values
+    let P = parseFloat(document.getElementById("amount").value); // Principal amount
+    let annualRate = parseFloat(document.getElementById("rate").value); // Annual interest rate
     let N = parseInt(document.getElementById("years").value) * 12; // Convert years to months
 
+    // Calculate monthly interest rate
     let R = (annualRate / 100) / 12; // Monthly interest rate
 
     if (P > 0 && R > 0 && N > 0) {
+        // Calculate EMI using the formula
         let EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
-        let totalAmount = EMI * N;
-        let interestAmount = totalAmount - P;
+        let totalAmount = EMI * N; // Total payment (Principal + Interest)
+        let interestAmount = totalAmount - P; // Total interest paid
 
-        document.getElementById("returnsemi").textContent = EMI.toFixed(2); // Monthly EMI
-        document.getElementById("invested").textContent = P.toFixed(2); // Principal amount
-        document.getElementById("interet").textContent = interestAmount.toFixed(2); // Total interest paid
-        document.getElementById("total").textContent = totalAmount.toFixed(2); // Total payment (Principal + Interest)
+        // Format the numbers in Indian format
+        let formattedEMI = formatNumberInIndianFormat(EMI.toFixed(2));
+        let formattedPrincipal = formatNumberInIndianFormat(P.toFixed(2));
+        let formattedInterest = formatNumberInIndianFormat(interestAmount.toFixed(2));
+        let formattedTotalAmount = formatNumberInIndianFormat(totalAmount.toFixed(2));
+
+        // Update values in HTML
+        document.getElementById("returnsemi").textContent = formattedEMI; // Monthly EMI
+        document.getElementById("invested").textContent = formattedPrincipal; // Principal amount
+        document.getElementById("interet").textContent = formattedInterest; // Total interest paid
+        document.getElementById("total").textContent = formattedTotalAmount; // Total payment (Principal + Interest)
 
         // Update the SIP Chart
         updateChart(P, interestAmount);
     } else {
+        // Reset values if input is invalid
         document.getElementById("returnsemi").textContent = "0.00";
         document.getElementById("invested").textContent = "0.00";
         document.getElementById("interet").textContent = "0.00";
         document.getElementById("total").textContent = "0.00";
 
-        // Reset the chart if invalid inputs
+        // Reset the chart
         updateChart(0, 0);
     }
 }

@@ -107,7 +107,7 @@
        <div class="chart-container">
            <canvas id="sipChart"></canvas>
        </div>
-       <button onclick="calculateSIP()">Invest Now</button>
+      
      </div>
   </div>
   <!--   //first row second column -->
@@ -425,29 +425,58 @@
                   }
                   calculateSIP();
               }
-             function calculateSIP() {
-    let P = parseFloat(document.getElementById("amount").value);
-    let annualRate = parseFloat(document.getElementById("rate").value);
+ function formatNumberInIndianFormat(num) {
+    // Convert the number to a string and split into whole and decimal parts
+    let parts = num.toString().split(".");
+    let wholePart = parts[0];
+    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+    // Add commas in Indian numbering system format
+    let lastThree = wholePart.slice(-3);
+    let otherNumbers = wholePart.slice(0, -3);
+    if (otherNumbers !== "") {
+        lastThree = "," + lastThree;
+    }
+    let result = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + decimalPart;
+
+    return result;
+}
+          
+          
+          
+            function calculateSIP() {
+    // Get input values
+    let P = parseFloat(document.getElementById("amount").value); // Principal amount
+    let annualRate = parseFloat(document.getElementById("rate").value); // Annual interest rate
     let t = parseInt(document.getElementById("years").value); // Time in years
 
-    let r = annualRate / 100; // Convert rate to decimal
+    // Convert rate to decimal
+    let r = annualRate / 100;
 
     if (P > 0 && r > 0 && t > 0) {
-        let A = P * (1 + (r * t)); // Total amount (Principal + Interest)
+        // Calculate total amount (Principal + Interest)
+        let A = P * (1 + (r * t)); // Simple interest formula: A = P(1 + rt)
         let interestAmount = A - P; // Total interest earned
 
-        document.getElementById("invested").textContent = P.toFixed(2); // Principal amount
-        document.getElementById("returns").textContent = interestAmount.toFixed(2); // Total interest
-        document.getElementById("total").textContent = A.toFixed(2); // Total amount
+        // Format the numbers in Indian format
+        let formattedPrincipal = formatNumberInIndianFormat(P.toFixed(2));
+        let formattedInterest = formatNumberInIndianFormat(interestAmount.toFixed(2));
+        let formattedTotalAmount = formatNumberInIndianFormat(A.toFixed(2));
+
+        // Update values in HTML
+        document.getElementById("invested").textContent = formattedPrincipal; // Principal amount
+        document.getElementById("returns").textContent = formattedInterest; // Total interest
+        document.getElementById("total").textContent = formattedTotalAmount; // Total amount
 
         // Update the SIP Chart
         updateChart(P, interestAmount);
     } else {
+        // Reset values if input is invalid
         document.getElementById("invested").textContent = "0.00";
         document.getElementById("returns").textContent = "0.00";
         document.getElementById("total").textContent = "0.00";
 
-        // Reset the chart if invalid inputs
+        // Reset the chart
         updateChart(0, 0);
     }
 }

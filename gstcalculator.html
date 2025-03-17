@@ -437,6 +437,23 @@
       </div>
       <script>
     
+function formatNumberInIndianFormat(num) {
+    // Convert the number to a string and split into whole and decimal parts
+    let parts = num.toString().split(".");
+    let wholePart = parts[0];
+    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+    // Add commas in Indian numbering system format
+    let lastThree = wholePart.slice(-3);
+    let otherNumbers = wholePart.slice(0, -3);
+    if (otherNumbers !== "") {
+        lastThree = "," + lastThree;
+    }
+    let result = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + decimalPart;
+
+    return result;
+}
+
 function calculateGST() {
     // Get the selected GST option (excluding or including)
     const gstOption = document.querySelector('input[name="gstOption"]:checked').value;
@@ -464,19 +481,19 @@ function calculateGST() {
         labelText = 'Pre-GST Amount:';               // Label for amount before GST
     }
 
-    // Update the result displays with formatted values (2 decimal places)
-    document.getElementById('totalGST').textContent = gstAmount.toFixed(2);
- //   document.getElementById('gstamount').textContent = gstAmount.toFixed(2);
-    document.getElementById('postGST').textContent = otherAmount.toFixed(2);
+    // Format the numbers in Indian format with 2 decimal places
+    let formattedGSTAmount = formatNumberInIndianFormat(gstAmount.toFixed(2));
+    let formattedOtherAmount = formatNumberInIndianFormat(otherAmount.toFixed(2));
+
+    // Update the result displays with formatted values
+    document.getElementById('totalGST').textContent = formattedGSTAmount;
+    // document.getElementById('gstamount').textContent = formattedGSTAmount; // Uncomment if needed
+    document.getElementById('postGST').textContent = formattedOtherAmount;
 
     // Update the label text to reflect the calculation type
     const resultLabel = document.getElementById('resultLabel');
     resultLabel.childNodes[0].nodeValue = labelText + ' ';
 }
-
-
-
-
 
 // Corrected event listeners
 document.querySelectorAll('input[name="gstOption"]').forEach(radio => {

@@ -94,7 +94,7 @@
        <div class="chart-container">
            <canvas id="sipChart"></canvas>
        </div>
-       <button onclick="calculateSIP()">Invest Now</button>
+    
      </div>
   </div>
   <!--   //first row second column -->
@@ -434,27 +434,55 @@
                   }
                   calculateSIP();
               }
+          
+  function formatNumberInIndianFormat(num) {
+    // Convert the number to a string and split into whole and decimal parts
+    let parts = num.toString().split(".");
+    let wholePart = parts[0];
+    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+    // Add commas in Indian numbering system format
+    let lastThree = wholePart.slice(-3);
+    let otherNumbers = wholePart.slice(0, -3);
+    if (otherNumbers !== "") {
+        lastThree = "," + lastThree;
+    }
+    let result = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + decimalPart;
+
+    return result;
+}        
+          
+          
            function calculateSIP() {
+    // Get input values
     let P = parseFloat(document.getElementById("amount").value); // Monthly Deposit
     let r = parseFloat(document.getElementById("rate").value) / 100; // Annual Interest Rate in decimal
-    let t = parseInt(document.getElementById("years").value);    // Tenure in Years
-    let n = 12 * t;  // Total number of monthly deposits
+    let t = parseInt(document.getElementById("years").value); // Tenure in Years
+    let n = 12 * t; // Total number of monthly deposits
     let totalInvested = P * n; // Total amount invested
 
+    // Calculate maturity amount
     let maturityAmount = 0;
     for (let k = 0; k < n; k++) {
         let remainingYears = (n - k) / 12; // Remaining time in years for deposit k
         maturityAmount += P * Math.pow(1 + r / 4, 4 * remainingYears);
     }
 
+    // Calculate interest earned
     let interestEarned = maturityAmount - totalInvested;
 
-    // Update the UI with calculated values
-    document.getElementById("invested").textContent = totalInvested.toFixed(2);
-    document.getElementById("returns").textContent = interestEarned.toFixed(2);
-    document.getElementById("total").textContent = maturityAmount.toFixed(2);
+    // Format the numbers in Indian format
+    let formattedTotalInvested = formatNumberInIndianFormat(totalInvested.toFixed(2));
+    let formattedInterestEarned = formatNumberInIndianFormat(interestEarned.toFixed(2));
+    let formattedMaturityAmount = formatNumberInIndianFormat(maturityAmount.toFixed(2));
 
-    updateChart(totalInvested, interestEarned); // Adjusted to use totalInvested
+    // Update the UI with formatted values
+    document.getElementById("invested").textContent = formattedTotalInvested;
+    document.getElementById("returns").textContent = formattedInterestEarned;
+    document.getElementById("total").textContent = formattedMaturityAmount;
+
+    // Update chart (if needed)
+    updateChart(totalInvested, interestEarned);
 }
               let sipChart;
               function updateChart(invested, returns) {
@@ -491,6 +519,21 @@ backToTopBtn.addEventListener("click", function () {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 });
+          
+function formatNumber(number) {
+    let numStr = number.toString();
+    let lastThree = numStr.slice(-3);
+    let otherNumbers = numStr.slice(0, -3);
+    if (otherNumbers === "") {
+        return lastThree;
+    }
+    otherNumbers = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+    return otherNumbers + "," + lastThree;
+}
+          
+          
+          
+          
           </script>
 
       <style>
