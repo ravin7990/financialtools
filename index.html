@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Navbar</title>
+  <title>InstaCalc</title>
+   <!-- Basic Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+   <link rel="canonical" href="https://instacalc.in/index.html" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="style.css">
+  <!-- Speed Booster -->
+<link rel="preconnect" href="https://www.gstatic.com">
+<link rel="preconnect" href="https://connect.facebook.net">
+     <link rel="stylesheet" href="firebase.js">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+
+
+  
+  <style>
+        /* Minimal bootstrap-critical.css */
+        .navbar{position:relative;display:flex;flex-wrap:wrap;align-items:center}
+        .container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+        /* Add other critical rules you need */
+    </style>
+    
+    <noscript>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
+    </noscript>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark ">
   <div class="d-flex align-items-center navbar-brand">
     <img src="logo.png" alt="Logo" class="mr-2" style="width:50px;height:50px;">
-    <h6 class="text-white mb-0">FinancialTools.com</h6>
+    <h6 class="text-white mb-0">InstaCalc.in</h6>
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,10 +46,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item px-2">
-        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="index.html">Home</a>
       </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="aboutus.html">About Us</a>
+      </li>
+       <li class="nav-item px-2">
+        <a class="nav-link " href="contactus.html">Contact Us</a>
       </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="privacypolicy.html">Privacy Policy</a>
@@ -38,54 +63,88 @@
   
 
 <div class="container mt-4 mb-5">
+  <!-- Quote Section -->
   <div class="row">
-    <div class="col-md-9 mb-3 "  >    <div class="card p-3 border bg-light  "> 
-     <div class="container  ">
-  <blockquote class="blockquote ">
-    <p>"The only way to avoid mistakes is not to invest—which is the biggest mistake of all."</p>
-    <footer class="blockquote-footer">Peter Lynch</footer>
-  </blockquote>
-</div> 
-      </div></div>
-   
+    <div class="col-md-9 mb-3">
+      <div class=" labelbody p-3 border ">
+        <div class="container">
+          <blockquote class="blockquote">
+            <p>"The only way to avoid mistakes is not to invest—which is the biggest mistake of all."</p>
+            <footer class="blockquote-footer">Peter Lynch</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financial Tools Dropdown -->
+  <div class="row">
+    <div class="col-md-9 mb-3">
+      <div class="labelbody p-3   border  w3-hover-grey" onclick="toggleFinancialTools()" style="cursor: pointer;">
+        Financial Tools ▼
+      </div>
+    </div>
   </div>
   
   
+  <div id="financialToolsMenu">
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="sipcalculator.html">SIP Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="mutualfundreturncalculator.html">Mutual Fund Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="swpcalculator.html">SWP Calculator</a></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="epfcalculator.html">EPF Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="fdcalculator.html">FD Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="rdcalculator.html">RD Calculator</a></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="cargcalculator.html">CAGR Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="coumpoundinterest.html">Compound Interest </a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="retirementcalculator.html">Retirement Calculator</a></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="ppfcalculator.html">PPF Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="emicalculator.html">EMI Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="simpleinterestcalculator.html">Simple Interest Calculator</a></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="gstcalculator.html">GST Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="npscalculator.html">NPS Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="gratuitycalculator.html">Gratuity Calculator</a></div></div>
+    </div>
+  </div>
+
+  <!-- Duration Tools Dropdown -->
+  <div class="row">
+    <div class="col-md-9 mb-3">
+      <div class="labelbody p-3 border  w3-hover-grey" onclick="toggleDurationTools()" style="cursor: pointer; background-color: ">
+        Duration Tools ▼
+      </div>
+    </div>
+  </div>
+  
+  <div id="durationToolsMenu">
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/dayscalculator.html">Days Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/hourcalculator.html">Hour Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/timedurationcalculator.html">Duration Calculator</a></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/agecalculator.html">Age Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/timezonecalculator.html">Timezone Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/birthdaycalculator.html">Birthday Calculator</a></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/weekcalculator.html">Week Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/minutes-hourscalculator.html">Minutes To Hour Calculator</a></div></div>
+      <div class="col-md-3 mb-3"><div class="labelbody p-3 border  w3-hover-grey"><a href="duration/juliandatecalculator.html">Julian Date Calculator</a></div></div>
+    </div>
+  </div>
   
   
-  
-
-  <div class="row">
-    <div class="col-md-3 mb-3 "  ><div class="card p-3 border bg-light  w3-hover-red"> <a href="sipcalculator.html">SIP Calculator </a> </div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="mutualfundreturncalculator.html">Mutual Fund Calculator </a></div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="swpcalculator.html">SWP Calculator</a></div></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 mb-3"><div class="card p-3 border bg-light w3-hover-red"><a href="epfcalculator.html">EPF Calculator </a> </div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="fdcalculator.html">FD Calculator </a></div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="rdcalculator.html">RD Calculator </a></div></div>
-
-  </div>
-  <div class="row">
-    <div class="col-md-3 mb-3"><div class=" card p-3 border bg-light w3-hover-red"><a href="cargcalculator.html">CARG Calculator </a></div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="coumpoundinterest.html">Coumpond Interest Calculator </a></div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="retirementcalculator.html">Retirement Calcultor </a></div></div>
-
-  </div>
-
-   <div class="row">
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="ppfcalculator.html">PPF Calculator </a></div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="emicalculator.html">EMI Calculator </a></div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="simpleinterestcalculator.html">Simple Interest Calculator </a> </div></div>
-
-  </div>
-  <div class="row">
-    <div class="col-md-3 mb-3"  ><div class="card p-3 border bg-light w3-hover-red"> <a href="gstcalculator.html">GST Calculator </a> </div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="npscalculator.html">NPS Calculator </a></div></div>
-    <div class="col-md-3 mb-3"><div class="p-3 border bg-light w3-hover-red"><a href="gratuitycalculator.html">Gratuity Calculator</a></div></div>
-  </div>
 </div>
-
+  
 <!--   //third row -->
    <div  class="row navbar-dark bg-dark footer1 container-fluid" >
 <!--        //third row first column -->
@@ -103,6 +162,69 @@
 
 
        <script>
+           
+           
+         
+            // Function to toggle Civl Tools dropdown
+  function toggleFinancialTools() {
+    const menu = document.getElementById('civilToolsMenu');
+    const header = document.querySelector('.labelbody.bg-primary[onclick="toggleCivilTools()"]');
+    
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+      header.innerHTML = 'Civil Tools ▼';
+    } else {
+      menu.style.display = 'none';
+      header.innerHTML = 'Civil Tools ▶';
+    }
+  }
+         
+         
+   // Function to toggle Financial Tools dropdown
+  function toggleFinancialTools() {
+    const menu = document.getElementById('financialToolsMenu');
+    const header = document.querySelector('.labelbody.bg-primary[onclick="toggleFinancialTools()"]');
+    
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+      header.innerHTML = 'Financial Tools ▼';
+    } else {
+      menu.style.display = 'none';
+      header.innerHTML = 'Financial Tools ▶';
+    }
+  }
+
+  // Function to toggle Duration Tools dropdown
+  function toggleDurationTools() {
+    const menu = document.getElementById('durationToolsMenu');
+    const header = document.querySelector('.labelbody.bg-primary[onclick="toggleDurationTools()"]');
+    
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+      header.innerHTML = 'Duration Tools ▼';
+    } else {
+      menu.style.display = 'none';
+      header.innerHTML = 'Duration Tools ▶';
+    }
+  }
+
+  // Initialize dropdowns as visible on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const financialMenu = document.getElementById('financialToolsMenu');
+    const durationMenu = document.getElementById('durationToolsMenu');
+     const civilToolsMenu = document.getElementById('civilToolsMenu');
+    
+    if (financialMenu) financialMenu.style.display = 'block';
+    if (durationMenu) durationMenu.style.display = 'block';
+        if (civilToolsMenu) durationMenu.style.display = 'block';
+  });   
+         
+         
+         
+         
+         
+         
+         
        // Get the button
 const backToTopBtn = document.getElementById("backToTopBtn");
 
@@ -122,5 +244,66 @@ document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 });
        </script>
 
-</body>
+<script >
+  // Firebase Simplified
+setTimeout(function(){
+    var firebaseScript = document.createElement('script');
+    firebaseScript.src = 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    document.body.appendChild(firebaseScript);
+
+    firebaseScript.onload = function(){
+        var analyticsScript = document.createElement('script');
+        analyticsScript.src = 'https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js';
+        document.body.appendChild(analyticsScript);
+        
+        // Your configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBoHOL_ZoQOpsrNBIFwEqKzTZtXDOUDrEc",
+            authDomain: "instacalc-40640.firebaseapp.com",
+            projectId: "instacalc-40640",
+            storageBucket: "instacalc-40640.firebasestorage.app",
+            messagingSenderId: "720029503645",
+            appId: "1:720029503645:web:2e9e1ea8532bc2fe6c4474",
+            measurementId: "G-J0ZWXR3T5P"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    }
+}, 3000); // Loads after 3 seconds
+</script>
+
+     <!-- Facebook Pixel Code -->
+<script>
+// Facebook Pixel Simplified
+function loadFacebookPixel(){
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1788018418799724');
+    fbq('track','PageView');
+}
+
+// Load when user scrolls or after 5 seconds
+window.addEventListener('scroll', loadFacebookPixel, {once: true});
+window.addEventListener('mousemove', loadFacebookPixel, {once: true});
+setTimeout(loadFacebookPixel, 5000);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1788018418799724&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+     
+  </div>
+  <!-- At bottom of body -->
+<script defer src="/js/jquery.slim.min.js"></script>
+<script defer src="/js/popper.min.js"></script>
+<script defer src="/js/bootstrap.bundle.min.js"></script>
+     </body>
+  
 </html>

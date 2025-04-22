@@ -1,13 +1,25 @@
 body {
   background-color: #DBE2EF;
+  font-family: "Trirong", serif;
 }
 
-.row {
+.rowg {
   background-color: #DBE2EF;
 }
 
 a {
     color:#112D4E; /* Change this to your desired color */
+}
+
+.sitetext {
+
+  color: #023047;
+
+}
+
+.labelbody {
+  background-color: #FBFBFB;
+box-shadow: 1px 1px   grey;
 }
 
 
@@ -122,4 +134,17 @@ ul, ol, li {
   list-style: none;   /* Removes bullet points/numbers */
   margin: 0;          /* Removes default margins */
   padding: 0;         /* Removes default padding */
+}
+
+#nav-container {
+  display: none;
+}
+
+.navbar-loaded #nav-container {
+  display: block;
+}
+
+.w3-hover-grey:hover {
+  background-color: #BCCCDC;
+
 }

@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Navbar</title>
+  <title>GST Calculator</title>
+     <!-- Basic Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+   
+ <link rel="canonical" href="https://instacalc.in/gstcalculator.html" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -36,6 +40,9 @@
       </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="aboutus.html">About Us</a>
+      </li>
+         <li class="nav-item px-2">
+        <a class="nav-link " href="contactus.html">Contact Us</a>
       </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="privacypolicy.html">Privacy Policy</a>
@@ -116,7 +123,7 @@
         <span class="value"><strong>₹<span id="postGST">0</span></strong></span>
     </div>
 </div>
-    <button onclick="calculateGST()">Calculate</button>
+  
 </div>
 
   </div>
@@ -436,14 +443,11 @@
        <div class="col-sm-0 " style="background-color:pink;">    </div>
       </div>
       <script>
-    
 function formatNumberInIndianFormat(num) {
-    // Convert the number to a string and split into whole and decimal parts
     let parts = num.toString().split(".");
     let wholePart = parts[0];
     let decimalPart = parts.length > 1 ? "." + parts[1] : "";
 
-    // Add commas in Indian numbering system format
     let lastThree = wholePart.slice(-3);
     let otherNumbers = wholePart.slice(0, -3);
     if (otherNumbers !== "") {
@@ -455,47 +459,46 @@ function formatNumberInIndianFormat(num) {
 }
 
 function calculateGST() {
-    // Get the selected GST option (excluding or including)
     const gstOption = document.querySelector('input[name="gstOption"]:checked').value;
-
-    // Get the total amount from the number input and convert to float
     const amount = parseFloat(document.getElementById('amount').value);
-
-    // Get the tax slab percentage from the dropdown and convert to float
     const taxSlab = parseFloat(document.getElementById('taxSlab').value);
 
-    // Variables to store calculated values
     let gstAmount, otherAmount, labelText;
 
-    // Perform calculations based on the selected GST option
     if (gstOption === 'excluding') {
-        // When excluding GST: input is the amount before GST
-        gstAmount = amount * (taxSlab / 100);        // GST = amount * tax rate
-        otherAmount = amount + gstAmount;            // Total including GST
-        labelText = 'Post-GST Amount:';              // Label for total including GST
-    } else { // 'including'
-        // When including GST: input is the total amount including GST
-        const originalAmount = amount / (1 + taxSlab / 100); // Amount before GST
-        gstAmount = amount - originalAmount;         // GST = total - original amount
-        otherAmount = originalAmount;                // Display the original amount
-        labelText = 'Pre-GST Amount:';               // Label for amount before GST
+        gstAmount = amount * (taxSlab / 100);
+        otherAmount = amount + gstAmount;
+        labelText = 'Post-GST Amount:';
+    } else {
+        const originalAmount = amount / (1 + taxSlab / 100);
+        gstAmount = amount - originalAmount;
+        otherAmount = originalAmount;
+        labelText = 'Pre-GST Amount:';
     }
 
-    // Format the numbers in Indian format with 2 decimal places
     let formattedGSTAmount = formatNumberInIndianFormat(gstAmount.toFixed(2));
     let formattedOtherAmount = formatNumberInIndianFormat(otherAmount.toFixed(2));
 
-    // Update the result displays with formatted values
     document.getElementById('totalGST').textContent = formattedGSTAmount;
-    // document.getElementById('gstamount').textContent = formattedGSTAmount; // Uncomment if needed
     document.getElementById('postGST').textContent = formattedOtherAmount;
 
-    // Update the label text to reflect the calculation type
     const resultLabel = document.getElementById('resultLabel');
     resultLabel.childNodes[0].nodeValue = labelText + ' ';
 }
 
-// Corrected event listeners
+function syncInputs(id, fromInput = false) {
+    const slider = document.getElementById(`${id}-slider`);
+    const input = document.getElementById(id);
+
+    if (fromInput) {
+        slider.value = input.value;
+    } else {
+        input.value = slider.value;
+    }
+
+    calculateGST();
+}
+
 document.querySelectorAll('input[name="gstOption"]').forEach(radio => {
     radio.addEventListener('change', calculateGST);
 });
@@ -506,24 +509,31 @@ document.getElementById('amount-slider').addEventListener('input', () => syncInp
 
 // Initial calculation
 calculateGST();
-          // Get the button
-const backToTopBtn = document.getElementById("backToTopBtn");
-
-// When the user scrolls down 20px from the top, show the button
-window.onscroll = function () {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    backToTopBtn.style.display = "block";
-  } else {
-    backToTopBtn.style.display = "none";
-  }
-};
-
-// When the user clicks the button, scroll to the top of the page
-backToTopBtn.addEventListener("click", function () {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-});
           </script>
+          
+          <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBoHOL_ZoQOpsrNBIFwEqKzTZtXDOUDrEc",
+    authDomain: "instacalc-40640.firebaseapp.com",
+    projectId: "instacalc-40640",
+    storageBucket: "instacalc-40640.firebasestorage.app",
+    messagingSenderId: "720029503645",
+    appId: "1:720029503645:web:2e9e1ea8532bc2fe6c4474",
+    measurementId: "G-J0ZWXR3T5P"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
       <style>
               bodyss {

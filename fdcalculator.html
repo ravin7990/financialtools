@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Navbar</title>
+   <title>FD Calculator | Fixed Deposit Interest Calculation Online (April 2025)</title>
+  <meta name="description" content="Calculate the maturity amount and interest earned on your Fixed Deposit (FD) in India for April 2025. Use our online FD calculator to estimate returns based on tenure and interest rate.">
+    <!-- Basic Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+      <link rel="canonical" href="https://instacalc.in/fdcalculator.html" />
+    
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="style.css">
+  <!-- Speed Booster -->
+<link rel="preconnect" href="https://www.gstatic.com">
+<link rel="preconnect" href="https://connect.facebook.net">
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Bootstrap Icons (for chevron) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    
+     <style>
+        /* Minimal bootstrap-critical.css */
+        .navbar{position:relative;display:flex;flex-wrap:wrap;align-items:center}
+        .container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+        /* Add other critical rules you need */
+    </style>
+    
+    <noscript>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
+    </noscript>
 </head>
 <body>
  <nav class="navbar navbar-expand-lg navbar-dark ">
   <div class="d-flex align-items-center navbar-brand">
     <img src="logo.png" alt="Logo" class="mr-2" style="width:50px;height:50px;">
-    <h6 class="text-white mb-0">FinancialTools.com</h6>
+    <h6 class="sitetext mb-0">InstaCalc.in</h6>
   </div>   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -37,6 +51,9 @@
       <li class="nav-item px-2">
         <a class="nav-link" href="aboutus.html">About Us</a>
       </li>
+         <li class="nav-item px-2">
+        <a class="nav-link " href="contactus.html">Contact Us</a>
+      </li>
       <li class="nav-item px-2">
         <a class="nav-link" href="privacypolicy.html">Privacy Policy</a>
       </li>
@@ -48,10 +65,10 @@
 
 
   <!-- //first row first column -->
-  <div  class="row">
+  <div  class="row ">
   <!--   //first row first column -->
-    <div class="col-md-6" style="background-colorf:yellow;">
-      <div class="container mt-5 table1">
+    <div class="col-md-6" >
+      <div class="container mt-5 table1 labelbody">
 
        <h2>FD Calculator</h2>
 
@@ -91,64 +108,64 @@
         <span class="value"><strong>₹<span id="total">0</span></strong></span>
     </div>
 </div>
-       <div class="chart-container">
-           <canvas id="sipChart"></canvas>
-       </div>
+        <div class="chart-container">
+            <canvas id="sipChart" width="300" height="200"></canvas>
+        </div>
     
      </div>
   </div>
   <!--   //first row second column -->
-    <div class="col-md-6" style="background-colorf:orange;">
+    <div class="col-md-6" >
       <div class="container mt-5 ">
 
          <div class=".container-fluid mt-sm-5 mb-sm-5">
-        <div class="card bg-primary ">
-        <div class="card-body"> <a class="text-white" href="sipcalculator.html"> SIP Calculator</a></div>
+        <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="sipcalculator.html"> SIP Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success ">
-        <div class="card-body text-white"> <a class="text-white" href="mutualfundreturncalculator.html"> Mutual Fund Returns Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="mutualfundreturncalculator.html"> Mutual Fund Returns Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary ">
-        <div class="card-body"> <a class="text-white" href="gratuitycalculator.html"> Gratuity Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="gratuitycalculator.html"> Gratuity Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success ">
-        <div class="card-body"> <a class="text-white" href="epfcalculator.html">EPF Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="epfcalculator.html">EPF Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary ">
-        <div class="card-body"> <a class="text-white" href="fdcalculator.html">FD Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="fdcalculator.html">FD Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success ">
-        <div class="card-body"> <a class="text-white" href="rdcalculator.html">RD Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="rdcalculator.html">RD Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary ">
-        <div class="card-body"> <a class="text-white" href="cargcalculator.html">CARG Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="cargcalculator.html">CARG Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success ">
-        <div class="card-body"> <a class="text-white" href="coumpoundinterest.html">Coumpond Interest Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="coumpoundinterest.html">Coumpond Interest Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary ">
-        <div class="card-body"> <a class="text-white" href="retirementcalculator.html">Retirement Calcultor</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="retirementcalculator.html">Retirement Calcultor</a></div>
       </div>
       <br>
 
-      <div class="card bg-success ">
-        <div class="card-body"> <a class="text-white" href="ppfcalculator.html">PPF Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="ppfcalculator.html">PPF Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-primary ">
-        <div class="card-body"> <a class="text-white" href="emicalculator.html">EMI Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="emicalculator.html">EMI Calculator</a></div>
       </div>
       <br>
-      <div class="card bg-success ">
-        <div class="card-body"> <a class="text-white" href="simpleinterestcalculator.html">Simple Interest Calculator</a></div>
+      <div class="card  ">
+        <div class="card-body labelbody"> <a class="sitetext" href="simpleinterestcalculator.html">Simple Interest Calculator</a></div>
       </div>
 
 
@@ -164,12 +181,12 @@
       </div>
 
   <!--  /second row -->
-   <div  class="row mb-05">
+   <div  class="row mb-05 ">
   <!--    //second row first column -->
      <div class="col-md-6" style="background-colorf:red;">
 
-       <div class="container">
-          <div class="fd-calculator-content">
+       <div class="container ">
+          <div class="fd-calculator-content ">
     <div class="title">
         <h1>FD Calculator: Easily Estimate Your Fixed Deposit Returns</h1>
     </div>
@@ -192,7 +209,7 @@
     <div class="how-fd-calculator-works">
         <h2>How Does an FD Calculator Work?</h2>
         <p>The FD Calculator follows a standard formula to compute returns:</p>
-        <p><code>A = P × (1 + r/n)<sup>n×t</sup></code></p>
+        <p><code><strong>A = P × (1 + r/n)<sup>n×t</sup> </strong></code></p>
         <p>Where:</p>
         <ul>
             <li><strong>A</strong> = Maturity amount (your total payout)</li>
@@ -262,10 +279,10 @@
         <div id="faqAccordion" class="accordion">
 
             <!-- FAQ 1 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn " data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             What is a Fixed Deposit (FD)?
                         </button>
                     </h5>
@@ -278,10 +295,10 @@
             </div>
 
             <!-- FAQ 2 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingTwo">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             How does the FD Calculator work?
                         </button>
                     </h5>
@@ -294,10 +311,10 @@
             </div>
 
             <!-- FAQ 3 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingThree">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             What inputs are required for the FD Calculator?
                         </button>
                     </h5>
@@ -316,10 +333,10 @@
             </div>
 
             <!-- FAQ 4 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingFour">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed text-left" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <button class="btn  collapsed text-left" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             What is the difference between cumulative and non-cumulative FDs?
                         </button>
                     </h5>
@@ -332,10 +349,10 @@
             </div>
 
             <!-- FAQ 5 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingFive">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                             Can I withdraw my FD before maturity?
                         </button>
                     </h5>
@@ -348,10 +365,10 @@
             </div>
 
             <!-- FAQ 6 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingSix">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                             Are FD returns taxable?
                         </button>
                     </h5>
@@ -364,10 +381,10 @@
             </div>
 
             <!-- FAQ 7 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingSeven">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                             What is the minimum tenure for an FD?
                         </button>
                     </h5>
@@ -380,10 +397,10 @@
             </div>
 
             <!-- FAQ 8 -->
-            <div class="card">
+            <div class="card labelbody">
                 <div class="card-header" id="headingEight">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                             Can I take a loan against my FD?
                         </button>
                     </h5>
@@ -444,8 +461,7 @@ function formatNumberInIndianFormat(num) {
 }
           
           
-          
-       function calculateSIP() {
+           function calculateSIP() {
     // Get input values
     const P = parseFloat(document.getElementById("amount").value); // Principal
     const annualRate = parseFloat(document.getElementById("rate").value); // Annual rate
@@ -476,6 +492,7 @@ function formatNumberInIndianFormat(num) {
     // Update chart (if needed)
     updateChart(P, interestEarned);
 }
+      
           
           
               let sipChart;
@@ -514,6 +531,7 @@ backToTopBtn.addEventListener("click", function () {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 });
           </script>
+       
 
       <style>
               bodyss {
@@ -593,5 +611,65 @@ backToTopBtn.addEventListener("click", function () {
 
 
           </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- At bottom of body -->
+<script>
+// Firebase Simplified
+setTimeout(function(){
+    var firebaseScript = document.createElement('script');
+    firebaseScript.src = 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    document.body.appendChild(firebaseScript);
+
+    firebaseScript.onload = function(){
+        var analyticsScript = document.createElement('script');
+        analyticsScript.src = 'https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js';
+        document.body.appendChild(analyticsScript);
+        
+        // Your configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBoHOL_ZoQOpsrNBIFwEqKzTZtXDOUDrEc",
+            authDomain: "instacalc-40640.firebaseapp.com",
+            projectId: "instacalc-40640",
+            storageBucket: "instacalc-40640.firebasestorage.app",
+            messagingSenderId: "720029503645",
+            appId: "1:720029503645:web:2e9e1ea8532bc2fe6c4474",
+            measurementId: "G-J0ZWXR3T5P"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    }
+}, 3000); // Loads after 3 seconds
+</script>
+    
+    <script>
+// Facebook Pixel Simplified
+function loadFacebookPixel(){
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1788018418799724');
+    fbq('track','PageView');
+}
+
+// Load when user scrolls or after 5 seconds
+window.addEventListener('scroll', loadFacebookPixel, {once: true});
+window.addEventListener('mousemove', loadFacebookPixel, {once: true});
+setTimeout(loadFacebookPixel, 5000);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1788018418799724&ev=PageView&noscript=1"/>
+</noscript>
+    
+     <!-- At bottom of body -->
+<script defer src="/js/jquery.slim.min.js"></script>
+<script defer src="/js/popper.min.js"></script>
+<script defer src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
