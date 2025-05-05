@@ -1,2 +1,0 @@
-# financialtools
-Financial Tools.com
